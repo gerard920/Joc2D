@@ -41,6 +41,7 @@ private:
 	int lastShootPlayer;
 	int timeLapShoot;
 
+	void deleteObject(int indexObject);
 };
 
 

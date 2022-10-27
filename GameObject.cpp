@@ -21,7 +21,6 @@
 #define imageW 1012.f
 
 
-
 GameObject *GameObject::make_Object(int typeObject)
 {
 	if (typeObject == 0) {
@@ -38,10 +37,10 @@ GameObject *GameObject::make_Object(int typeObject)
 void GameObject::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram) {
 	alive = true;
 	tileMapDispl = tileMapPos;
+	lives = 1;
 }
 
 void GameObject::update(int deltaTime) {
-	cout << "1" << " is divisible by" << "2" << endl;
 	sprite->update(deltaTime);
 }
 
@@ -69,11 +68,24 @@ int GameObject::getType() {
 	return -1;
 }
 
-bool GameObject::detectColisionObjects() {
-	return false;
+bool GameObject::detectColisionObject(vector<GameObject*> objects, int index) {
+	for (int i = index; i < objects.size(); ++i) {
+		if (canColision(type, objects[i]->getType())) {
 
+		}
+
+	}
+	return false;
 }
 
-void GameObject::detectColisionMap() {
+bool GameObject::detectColisionMap() {
+	return false;
+}
 
+bool GameObject::isAlive() {
+	return alive;
+}
+
+bool GameObject::canColision(int objectX, int objectY) {
+	return Game::instance().canColission(objectX, objectY);
 }

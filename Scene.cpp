@@ -74,11 +74,6 @@ void Scene::update(int deltaTime)
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 	
 	if (Game::instance().getKey(120) && (currentTime - lastShootPlayer)/1000 >= 1) {
-
-		GameObject* eliminar = objects[0];
-		objects.erase(std::find(objects.begin(), objects.end(), objects[0]));
-		delete eliminar;
-
 		lastShootPlayer = currentTime;
 
 		GameObject *shoot1 = GameObject::make_Object(2);
@@ -92,11 +87,12 @@ void Scene::update(int deltaTime)
 		if (objects[i]->getType() == 0) {
 			posMainPlayer = objects[i]->getPosition();
 		}
-		if (objects[i]->detectColisionObjects()) {
-			
-		}
 		objects[i]->update(deltaTime);
-
+		objects[i]->detectColisionMap(); 
+		objects[i]->detectColisionObject(objects, i);
+		if (!objects[i]->isAlive()) {
+			deleteObject(i);
+		}
 	}
 
 }
@@ -104,7 +100,7 @@ void Scene::update(int deltaTime)
 void Scene::render()
 {
 	map->render();
-	float velocity = currentTime / 20;
+	float velocity = currentTime / 200;
 	//projection = glm::ortho(0.f + velocity, float(SCREEN_WIDTH - 1 + velocity), float(SCREEN_HEIGHT - 1), 0.f);
 
 	for (int i = 0; i < objects.size(); ++i) {
@@ -113,18 +109,24 @@ void Scene::render()
 
 }
 
+void Scene::deleteObject(int indexObject) {
+	GameObject* eliminar = objects[indexObject];
+	objects.erase(std::find(objects.begin(), objects.end(), objects[indexObject]));
+	delete eliminar;
+}
+
 void Scene::initShaders()
 {
 	Shader vShader, fShader;
 
 	vShader.initFromFile(VERTEX_SHADER, "shaders/texture.vert");
-	if(!vShader.isCompiled())
+	if (!vShader.isCompiled())
 	{
 		cout << "Vertex Shader Error" << endl;
 		cout << "" << vShader.log() << endl << endl;
 	}
 	fShader.initFromFile(FRAGMENT_SHADER, "shaders/texture.frag");
-	if(!fShader.isCompiled())
+	if (!fShader.isCompiled())
 	{
 		cout << "Fragment Shader Error" << endl;
 		cout << "" << fShader.log() << endl << endl;
@@ -133,7 +135,7 @@ void Scene::initShaders()
 	texProgram.addShader(vShader);
 	texProgram.addShader(fShader);
 	texProgram.link();
-	if(!texProgram.isLinked())
+	if (!texProgram.isLinked())
 	{
 		cout << "Shader Linking Error" << endl;
 		cout << "" << texProgram.log() << endl << endl;
@@ -142,6 +144,3 @@ void Scene::initShaders()
 	vShader.free();
 	fShader.free();
 }
-
-
-

@@ -11,7 +11,7 @@ class GameObject
 public:
 	static GameObject *make_Object(int typeObject);
 
-	virtual void  init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram);
+	virtual void init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram);
 	virtual void update(int deltaTime);
 	virtual void render();
 
@@ -19,9 +19,10 @@ public:
 	virtual glm::ivec2 getPosition();
 	virtual void setPosition(const glm::vec2 &pos);
 	virtual int getType();
+	virtual bool isAlive();
 
-	virtual bool detectColisionObjects();
-	virtual void detectColisionMap();
+	virtual bool detectColisionMap();
+	virtual bool detectColisionObject(vector<GameObject*> objects, int index);
 
 	Texture spritesheet;
 	Sprite *sprite;
@@ -34,19 +35,15 @@ public:
 		STAND_UP, STAND_DOWN, MOVE_UP, MOVE_DOWN
 	};
 
+	
+
 
 private:
-	bool bMoving, bStop;
-	bool bJumping;
 	glm::ivec2 tileMapDispl, posPlayer;
-	int jumpAngle, startY;
 	bool alive;
+	int lives, type;
 
-	int type;
-	void loadSpriteSheet(int type, ShaderProgram &shaderProgram, const glm::ivec2 &tileMapPos);
-	void moveObject(int deltaTime);
-
-
+	bool canColision(int objectX, int objectY);
 
 };
 

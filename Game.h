@@ -42,6 +42,8 @@ public:
 	bool getKey(int key) const;
 	bool getSpecialKey(int key) const;
 
+	bool canColission(int objectX, int objectY);
+
 private:
 	bool bPlay;                       // Continue to play game?
 	Scene *scene;                      // Scene to render
@@ -51,6 +53,14 @@ private:
 
 	bool inMenu, inPlay;
 	int idSceneMenu;
+
+	bool collisionMatrix[4][4] = {
+		//P, E, SP, SE
+		 {0, 1, 0, 1},
+		 {0, 0, 1, 0},
+		 {0, 0, 0, 1},
+		 {0, 0, 0, 0}
+	};
 
 };
 
