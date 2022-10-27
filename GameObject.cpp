@@ -8,6 +8,7 @@
 #include "GameObject.h"
 #include "MainPlayer.h"
 #include "Enemy1.h"
+#include "MainShoot1.h"
 
 #define JUMP_ANGLE_STEP 4
 #define JUMP_HEIGHT 96
@@ -29,12 +30,14 @@ GameObject *GameObject::make_Object(int typeObject)
 	else if (typeObject == 1) {
 		return new Enemy1();
 	}
+	else if (typeObject == 2) {
+		return new MainShoot1();
+	}
 }
 
 void GameObject::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram) {
 	alive = true;
 	tileMapDispl = tileMapPos;
-
 }
 
 void GameObject::update(int deltaTime) {
@@ -62,4 +65,15 @@ glm::ivec2 GameObject::getPosition() {
 	return this->posPlayer;
 }
 
+int GameObject::getType() {
+	return -1;
+}
 
+bool GameObject::detectColisionObjects() {
+	return false;
+
+}
+
+void GameObject::detectColisionMap() {
+
+}

@@ -1,7 +1,11 @@
+#ifndef _MAINSHOOT1_INCLUDE
+#define _MAINSHOOT1_INCLUDE
+
+
 #include "GameObject.h"
 
 
-class MainPlayer : public GameObject
+class MainShoot1 : public GameObject
 {
 public:
 	void init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram);
@@ -9,5 +13,6 @@ public:
 
 	int getType();
 
-
 };
+
+#endif // _MAINSHOOT1_INCLUDE

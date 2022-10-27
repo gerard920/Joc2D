@@ -35,6 +35,7 @@ Scene::~Scene()
 }
 
 
+
 void Scene::init()
 {
 	initShaders();
@@ -46,6 +47,8 @@ void Scene::init()
 	mainPlayer->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	mainPlayer->setTileMap(map);
 	objects.push_back(mainPlayer);
+	posMainPlayer = mainPlayer->getPosition();
+
 	 
 	////Enemy
 	GameObject *enemigo = GameObject::make_Object(1);
@@ -70,16 +73,39 @@ void Scene::update(int deltaTime)
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 	
-	for (int i = 0; i < objects.size(); ++i) {
-		objects[i]->update(deltaTime);
+	if (Game::instance().getKey(120) && (currentTime - lastShootPlayer)/1000 >= 1) {
+
+		GameObject* eliminar = objects[0];
+		objects.erase(std::find(objects.begin(), objects.end(), objects[0]));
+		delete eliminar;
+
+		lastShootPlayer = currentTime;
+
+		GameObject *shoot1 = GameObject::make_Object(2);
+		shoot1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+		shoot1->setPosition(glm::vec2((posMainPlayer.x + 86), posMainPlayer.y));
+		shoot1->setTileMap(map);
+		objects.push_back(shoot1);
 	}
+
+	for (int i = 0; i < objects.size(); ++i) {
+		if (objects[i]->getType() == 0) {
+			posMainPlayer = objects[i]->getPosition();
+		}
+		if (objects[i]->detectColisionObjects()) {
+			
+		}
+		objects[i]->update(deltaTime);
+
+	}
+
 }
 
 void Scene::render()
 {
 	map->render();
 	float velocity = currentTime / 20;
-	projection = glm::ortho(0.f + velocity, float(SCREEN_WIDTH - 1 + velocity), float(SCREEN_HEIGHT - 1), 0.f);
+	//projection = glm::ortho(0.f + velocity, float(SCREEN_WIDTH - 1 + velocity), float(SCREEN_HEIGHT - 1), 0.f);
 
 	for (int i = 0; i < objects.size(); ++i) {
 		objects[i]->render();

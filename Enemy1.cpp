@@ -20,6 +20,8 @@
 
 void Enemy1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
+	GameObject::init(tileMapPos, shaderProgram);
+
 	spritesheet.loadFromFile("images/rType.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	//Mida prsj	           //mida sheet que agafa 
 	sprite = Sprite::createSprite(glm::ivec2(86, 86), glm::vec2(0.3, 0.18), &spritesheet, &shaderProgram);
@@ -36,7 +38,7 @@ void Enemy1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 
 void Enemy1::update(int deltaTime)
 {
-	sprite->update(deltaTime);
+	GameObject::update(deltaTime);
 
 	glm::ivec2 position = getPosition();
 
@@ -64,6 +66,11 @@ void Enemy1::update(int deltaTime)
 	setPosition(position);
 	//sprite->setPosition(glm::vec2(float(tileMapDispl.x + posEnemy.x), float(tileMapDispl.y + posEnemy.y)));
 }
+
+int Enemy1::getType() {
+	return 1;
+}
+
 
 
 

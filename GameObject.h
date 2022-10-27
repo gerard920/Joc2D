@@ -15,15 +15,19 @@ public:
 	virtual void update(int deltaTime);
 	virtual void render();
 
-	void setTileMap(TileMap *tileMap);
+	virtual void setTileMap(TileMap *tileMap);
+	virtual glm::ivec2 getPosition();
+	virtual void setPosition(const glm::vec2 &pos);
+	virtual int getType();
 
-	glm::ivec2 getPosition();
-	void setPosition(const glm::vec2 &pos);
+	virtual bool detectColisionObjects();
+	virtual void detectColisionMap();
 
 	Texture spritesheet;
 	Sprite *sprite;
 	TileMap *map;
 
+	int coliderx, colidery, radius;
 
 	enum GameObjectAnims {
 		STAND_LEFT, STAND_RIGHT, MOVE_LEFT, MOVE_RIGHT,
@@ -41,6 +45,9 @@ private:
 	int type;
 	void loadSpriteSheet(int type, ShaderProgram &shaderProgram, const glm::ivec2 &tileMapPos);
 	void moveObject(int deltaTime);
+
+
+
 };
 
 #endif // _GAMEOBJECT_INCLUDE

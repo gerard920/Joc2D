@@ -20,6 +20,7 @@
 
 void MainPlayer::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
+	GameObject::init(tileMapPos, shaderProgram);
 	spritesheet.loadFromFile("images/rType.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	sprite = Sprite::createSprite(glm::ivec2(86, 86), glm::vec2(0.33, 0.19), &spritesheet, &shaderProgram);
 
@@ -112,5 +113,10 @@ void MainPlayer::update(int deltaTime)
 			sprite->changeAnimation(STAND_DOWN);
 	}
 	setPosition(position);
+
+	GameObject::update(deltaTime);
 }
 
+int MainPlayer::getType() {
+	return 0;
+}

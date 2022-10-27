@@ -66,6 +66,9 @@
     <ClInclude Include="Enemy1.h">
       <Filter>Archivos de encabezado\Factory</Filter>
     </ClInclude>
+    <ClInclude Include="MainShoot1.h">
+      <Filter>Archivos de encabezado\Factory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -111,6 +114,9 @@
       <Filter>Archivos de código fuente\Factory</Filter>
     </ClCompile>
     <ClCompile Include="Enemy1.cpp">
+      <Filter>Archivos de código fuente\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="MainShoot1.cpp">
       <Filter>Archivos de código fuente\Factory</Filter>
     </ClCompile>
   </ItemGroup>

@@ -9,4 +9,5 @@ public:
 
 	bool subiendo, bajando;
 
+	int getType();
 };

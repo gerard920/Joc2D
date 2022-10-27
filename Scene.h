@@ -35,6 +35,11 @@ private:
 	ShaderProgram texProgram;
 	float currentTime;
 	glm::mat4 projection;
+	glm::ivec2 posMainPlayer;
+	int radiusMainPlayer;
+
+	int lastShootPlayer;
+	int timeLapShoot;
 
 };
 
