@@ -3,7 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Scene.h"
 #include "Game.h"
-
+#include "GameObject.h"
 
 #define SCREEN_X 32
 #define SCREEN_Y 16
@@ -20,15 +20,18 @@
 Scene::Scene()
 {
 	map = NULL;
-	player = NULL;
+	//objects = NULL;
 }
 
 Scene::~Scene()
 {
 	if(map != NULL)
 		delete map;
-	if(player != NULL)
-		delete player;
+	if (objects.size() > 0) {
+		for (int i = 0; i < objects.size(); ++i) {
+			delete objects[i];
+		}
+	}
 }
 
 
@@ -38,25 +41,19 @@ void Scene::init()
 	map = TileMap::createTileMap("levels/level01.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
 
 	//Player
-	player = new Player();
-	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
-	player->setTileMap(map);
-
-
-	//Enemy
-	enemy = new Enemy();
-	enemy->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	enemy->setPosition(glm::vec2(INIT_ENEMY_X_TILES * map->getTileSize(), INIT_ENEMY_Y_TILES * map->getTileSize()));
-	enemy->setTileMap(map);
-
-
-	//Enemys
-	enemy1.init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	enemy1.setPosition(glm::vec2(INIT_ENEMY_X_TILES * map->getTileSize(), INIT_ENEMY_Y_TILES * map->getTileSize()));
-	enemy1.setTileMap(map);
-	enemys.push_back(enemy1);
-
+	GameObject *mainPlayer = GameObject::make_Object(0);
+	mainPlayer->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+	mainPlayer->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
+	mainPlayer->setTileMap(map);
+	objects.push_back(mainPlayer);
+	 
+	////Enemy
+	GameObject *enemigo = GameObject::make_Object(1);
+	enemigo->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+	enemigo->setPosition(glm::vec2(INIT_ENEMY_X_TILES * map->getTileSize(), INIT_ENEMY_Y_TILES * map->getTileSize()));
+	enemigo->setTileMap(map);
+	objects.push_back(enemigo);
+			
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
 	currentTime = 0.0f;
 }
@@ -72,32 +69,22 @@ void Scene::update(int deltaTime)
 	modelview = glm::mat4(1.0f);
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
-
-	if (Game::instance().getKey(101)) {
-		enemy1.init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemy1.setPosition(glm::vec2(INIT_ENEMY_X_TILES * map->getTileSize(), INIT_ENEMY_Y_TILES * map->getTileSize()));
-		enemy1.setTileMap(map);
-		enemys.push_back(enemy1);
+	
+	for (int i = 0; i < objects.size(); ++i) {
+		objects[i]->update(deltaTime);
 	}
-
-	player->update(deltaTime);
-	enemy->update(deltaTime);
-	for (int i = 0; i < enemys.size(); ++i) {
-		enemys[0].update(deltaTime);
-	}
-
-
-
 }
 
 void Scene::render()
 {
 	map->render();
-	player->render();
-	enemy->render();	
-	for (int i = 0; i < enemys.size(); ++i) {
-		enemys[0].render();
+	float velocity = currentTime / 20;
+	projection = glm::ortho(0.f + velocity, float(SCREEN_WIDTH - 1 + velocity), float(SCREEN_HEIGHT - 1), 0.f);
+
+	for (int i = 0; i < objects.size(); ++i) {
+		objects[i]->render();
 	}
+
 }
 
 void Scene::initShaders()

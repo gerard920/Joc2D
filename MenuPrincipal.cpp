@@ -32,8 +32,8 @@ void MenuPrincipal::init(const int& idScene) {
 
 	//Load textures
 	sceneMenu.loadFromFile("images/menup.jpg", TEXTURE_PIXEL_FORMAT_RGBA);
-	sceneCredits.loadFromFile("images/baba-is-credits.png", TEXTURE_PIXEL_FORMAT_RGB);
-	sceneIns.loadFromFile("images/baba-is-instr1.png", TEXTURE_PIXEL_FORMAT_RGB);
+	sceneCredits.loadFromFile("images/credits.png", TEXTURE_PIXEL_FORMAT_RGB);
+	sceneIns.loadFromFile("images/rocks.jpg", TEXTURE_PIXEL_FORMAT_RGBA);
 }
 
 void MenuPrincipal::update(int deltaTime, int id) {

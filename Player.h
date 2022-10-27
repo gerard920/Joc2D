@@ -15,12 +15,15 @@ class Player
 
 public:
 	void init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram);
+	void init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram, int type);
 	void update(int deltaTime);
 	void render();
 	
 	void setTileMap(TileMap *tileMap);
 	void setPosition(const glm::vec2 &pos);
-	
+	int getXPlayer();
+	int getYPlayer();
+
 private:
 	bool bMoving, bStop;
 	bool bJumping;
@@ -29,7 +32,11 @@ private:
 	Texture spritesheet;
 	Sprite *sprite;
 	TileMap *map;
+	bool alive;
 
+	int type;	
+	void loadSpriteSheet(int type, ShaderProgram &shaderProgram, const glm::ivec2 &tileMapPos);
+	void moveObject(int deltaTime);
 };
 
 
