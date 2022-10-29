@@ -20,9 +20,22 @@ public:
 	virtual void setPosition(const glm::vec2 &pos);
 	virtual int getType();
 	virtual bool isAlive();
+	virtual void setAlive(bool alive);
+	virtual void setSizePlayer(const glm::vec2 &size);
+	virtual glm::ivec2 getSizePlayer();
 
-	virtual bool detectColisionMap();
+
+
+	virtual bool detectColisionMap(glm::ivec2 posAnterior);
 	virtual bool detectColisionObject(vector<GameObject*> objects, int index);
+
+	bool collisionMoveLeft(const glm::ivec2 &posObj1, const glm::ivec2 &sizeObj1, const glm::ivec2 &posObj2, const glm::ivec2 &sizeObj2) const;
+	bool collisionMoveRight(const glm::ivec2 &posObj1, const glm::ivec2 &sizeObj1, const glm::ivec2 &posObj2, const glm::ivec2 &sizeObj2) const;
+	bool collisionMoveUp(const glm::ivec2 &posObj1, const glm::ivec2 &sizeObj1, const glm::ivec2 &posObj2, const glm::ivec2 &sizeObj2) const;
+	bool collisionMoveDown(const glm::ivec2 &posObj1, const glm::ivec2 &sizeObj1, const glm::ivec2 &posObj2, const glm::ivec2 &sizeObj2) const;
+
+	virtual void quitarVida();
+
 
 	Texture spritesheet;
 	Sprite *sprite;
@@ -39,11 +52,12 @@ public:
 
 
 private:
-	glm::ivec2 tileMapDispl, posPlayer;
+	glm::ivec2 tileMapDispl, posPlayer, sizePlayer;
 	bool alive;
 	int lives, type;
-
 	bool canColision(int objectX, int objectY);
+
+
 
 };
 

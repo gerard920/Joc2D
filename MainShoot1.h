@@ -13,6 +13,9 @@ public:
 
 	int getType();
 
+	bool detectColisionMap(glm::ivec2 posAnterior);
+
+
 };
 
 #endif // _MAINSHOOT1_INCLUDE

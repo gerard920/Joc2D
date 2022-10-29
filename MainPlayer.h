@@ -9,5 +9,8 @@ public:
 
 	int getType();
 
+	bool detectColisionMap(glm::ivec2 posAnterior);
+
+
 
 };

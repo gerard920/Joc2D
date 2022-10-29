@@ -22,7 +22,8 @@ void MainShoot1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram
 	GameObject::init(tileMapPos, shaderProgram);
 	spritesheet.loadFromFile("images/rType.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	//Mida prsj	           //mida sheet que agafa 
-	sprite = Sprite::createSprite(glm::ivec2(86, 86), glm::vec2(0.3, 0.18), &spritesheet, &shaderProgram);
+	setSizePlayer(glm::ivec2(86, 86));
+	sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(0.3, 0.18), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(1);
 
 	sprite->setAnimationSpeed(STAND_LEFT, 8);
@@ -43,4 +44,12 @@ void MainShoot1::update(int deltaTime)
 
 int MainShoot1::getType() {
 	return 2;
+}
+
+bool MainShoot1::detectColisionMap(glm::ivec2 posAnterior) {
+	if (GameObject::detectColisionMap(posAnterior)) {
+		setAlive(false);
+		return true;
+	}
+	return false;	
 }

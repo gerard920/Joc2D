@@ -8,6 +8,6 @@ public:
 	void update(int deltaTime);
 
 	bool subiendo, bajando;
-
+	bool detectColisionMap(glm::ivec2 posAnterior);
 	int getType();
 };

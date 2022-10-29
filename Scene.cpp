@@ -87,8 +87,9 @@ void Scene::update(int deltaTime)
 		if (objects[i]->getType() == 0) {
 			posMainPlayer = objects[i]->getPosition();
 		}
+		glm::ivec2 posAnterior = objects[i]->getPosition();
 		objects[i]->update(deltaTime);
-		objects[i]->detectColisionMap(); 
+		objects[i]->detectColisionMap(posAnterior); 
 		objects[i]->detectColisionObject(objects, i);
 		if (!objects[i]->isAlive()) {
 			deleteObject(i);

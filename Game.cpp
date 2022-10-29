@@ -117,7 +117,7 @@ bool Game::getSpecialKey(int key) const
 }
 
 bool Game::canColission(int objectX, int objectY) {
-	return collisionMatrix[objectX, objectY];
+	return collisionMatrix[objectX][objectY];
 }
 
 

@@ -22,7 +22,10 @@ void MainPlayer::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram
 {
 	GameObject::init(tileMapPos, shaderProgram);
 	spritesheet.loadFromFile("images/rType.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	sprite = Sprite::createSprite(glm::ivec2(86, 86), glm::vec2(0.33, 0.19), &spritesheet, &shaderProgram);
+
+	setSizePlayer(glm::ivec2(86, 86));
+
+	sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(0.33, 0.19), &spritesheet, &shaderProgram);
 
 	sprite->setNumberAnimations(8);
 
@@ -59,30 +62,30 @@ void MainPlayer::update(int deltaTime)
 	glm::ivec2 position = getPosition();
 	if (Game::instance().getSpecialKey(GLUT_KEY_LEFT))
 	{
-		if (sprite->animation() != MOVE_LEFT)
-			sprite->changeAnimation(MOVE_LEFT);
+		/*if (sprite->animation() != MOVE_LEFT)
+			sprite->changeAnimation(MOVE_LEFT);*/
 		position.x -= 2;
-		if (map->collisionMoveLeft(position, glm::ivec2(64, 64)))
+		/*if (map->collisionMoveLeft(position, glm::ivec2(64, 64)))
 		{
 			position.x += 2;
 			sprite->changeAnimation(STAND_LEFT);
-		}
+		}*/
 	}
 	else if (Game::instance().getSpecialKey(GLUT_KEY_RIGHT))
 	{
-		if (sprite->animation() != MOVE_RIGHT)
-			sprite->changeAnimation(MOVE_RIGHT);
+		/*if (sprite->animation() != MOVE_RIGHT)
+			sprite->changeAnimation(MOVE_RIGHT);*/
 		position.x += 2;
-		if (map->collisionMoveRight(position, glm::ivec2(64, 64)))
+		/*if (map->collisionMoveRight(position, glm::ivec2(64, 64)))
 		{
 			position.x -= 2;
 			sprite->changeAnimation(STAND_RIGHT);
-		}
+		}*/
 	}
 	else if (Game::instance().getSpecialKey(GLUT_KEY_UP))
-	{
+	{/*
 		if (sprite->animation() != MOVE_UP)
-			sprite->changeAnimation(MOVE_UP);
+			sprite->changeAnimation(MOVE_UP);*/
 		position.y -= 2;
 		/*if (map->collisionMoveUp(position, glm::ivec2(64, 64)))
 		{
@@ -92,8 +95,8 @@ void MainPlayer::update(int deltaTime)
 	}
 	else if (Game::instance().getSpecialKey(GLUT_KEY_DOWN))
 	{
-		if (sprite->animation() != MOVE_DOWN)
-			sprite->changeAnimation(MOVE_DOWN);
+		/*if (sprite->animation() != MOVE_DOWN)
+			sprite->changeAnimation(MOVE_DOWN);*/
 		position.y += 2;
 		/*if (map->collisionMoveDown(position, glm::ivec2(64, 64)))
 		{
@@ -101,7 +104,7 @@ void MainPlayer::update(int deltaTime)
 			sprite->changeAnimation(STAND_DOWN);
 		}*/
 	}
-	else
+	/*else
 	{
 		if (sprite->animation() == MOVE_LEFT)
 			sprite->changeAnimation(STAND_LEFT);
@@ -111,7 +114,7 @@ void MainPlayer::update(int deltaTime)
 			sprite->changeAnimation(STAND_UP);
 		else if (sprite->animation() == MOVE_DOWN)
 			sprite->changeAnimation(STAND_DOWN);
-	}
+	}*/
 	setPosition(position);
 
 	GameObject::update(deltaTime);
@@ -120,3 +123,13 @@ void MainPlayer::update(int deltaTime)
 int MainPlayer::getType() {
 	return 0;
 }
+
+bool MainPlayer::detectColisionMap(glm::ivec2 posAnterior) {
+	if (GameObject::detectColisionMap(posAnterior)) {
+		this->setPosition(posAnterior);
+		return true;
+	}
+	return false;
+	
+}
+

@@ -24,7 +24,8 @@ void Enemy1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 
 	spritesheet.loadFromFile("images/rType.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	//Mida prsj	           //mida sheet que agafa 
-	sprite = Sprite::createSprite(glm::ivec2(86, 86), glm::vec2(0.3, 0.18), &spritesheet, &shaderProgram);
+	setSizePlayer(glm::ivec2(86, 86));
+	sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(0.3, 0.18), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(1);
 
 	sprite->setAnimationSpeed(STAND_LEFT, 8);
@@ -44,31 +45,39 @@ void Enemy1::update(int deltaTime)
 
 
 	if (subiendo) {
-		if (position.y >= 0) {
-			position.y -= 2;
-		}
-		else {
-			position.y += 2;
+		if (map->collisionMoveUp(getPosition(), getSizePlayer())) {
 			subiendo = false;
 			bajando = true;
 		}
-	}
-	else if (bajando) {
-		if (position.y <= SCREEN_HEIGHT - 86) {
-			position.y += 2;
-		}
 		else {
 			position.y -= 2;
-			subiendo = true;
-			bajando = false;
 		}
 	}
+	else if  (bajando) {
+		if (map->collisionMoveDown(getPosition(), getSizePlayer())) {
+			subiendo = true;
+				bajando = false;
+		}
+		else {
+			position.y += 2;
+		}
+	}
+	
 	setPosition(position);
 	//sprite->setPosition(glm::vec2(float(tileMapDispl.x + posEnemy.x), float(tileMapDispl.y + posEnemy.y)));
 }
 
 int Enemy1::getType() {
 	return 1;
+}
+
+bool Enemy1::detectColisionMap(glm::ivec2 posAnterior) {
+	/*if (GameObject::detectColisionMap(posAnterior)) {
+		this->setPosition(posAnterior);
+		return true;
+	}*/
+	return false;
+
 }
 
 
