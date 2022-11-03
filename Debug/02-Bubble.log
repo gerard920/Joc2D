@@ -1,4 +1,4 @@
-﻿Build started 29/10/2022 13:05:12.
+﻿Build started 03/11/2022 16:12:43.
      1>Project "C:\Users\gserramia\Desktop\Uni\OpenGL_VS2015\2DGame\02-Bubble\02-Bubble\02-Bubble.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\02-Bubble.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -47,4 +47,4 @@ Build succeeded.
     4 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:02.70
+Time Elapsed 00:00:02.53

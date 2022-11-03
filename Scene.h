@@ -9,6 +9,9 @@
 #include "Enemy.h"
 #include <vector>
 #include "GameObject.h"
+#include "TexturedQuad.h"
+
+
 
 // Scene contains all the entities of our game.
 // It is responsible for updating and render them.
@@ -31,6 +34,12 @@ private:
 private:
 	TileMap *map;
 	vector<GameObject*> objects;
+
+	Texture tex1;
+	Texture tex;
+	TexturedQuad *texQuad;
+	TexturedQuad *fons;
+
 
 	ShaderProgram texProgram;
 	float currentTime;

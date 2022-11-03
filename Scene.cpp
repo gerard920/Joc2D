@@ -4,6 +4,8 @@
 #include "Scene.h"
 #include "Game.h"
 #include "GameObject.h"
+#include "TexturedQuad.h"
+
 
 #define SCREEN_X 32
 #define SCREEN_Y 16
@@ -39,7 +41,23 @@ Scene::~Scene()
 void Scene::init()
 {
 	initShaders();
-	map = TileMap::createTileMap("levels/level01.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
+
+	//fons negre
+	//declarar el fons
+	glm::vec2 geom1[2] = { glm::vec2(0.f, 0.f), glm::vec2(2250.f, 480.f) };
+	glm::vec2 texCoords2[2] = { glm::vec2(0.f, 0.f), glm::vec2(1.f, 1.f) };
+	fons = TexturedQuad::createTexturedQuad(geom1, texCoords2, texProgram);
+	// Load textures
+	tex1.loadFromFile("images/fonsnegre.png", TEXTURE_PIXEL_FORMAT_RGBA);
+
+	//declarar el fons
+	glm::vec2 geom[2] = { glm::vec2(0.f, 0.f), glm::vec2(2250.f, 480.f) };
+	glm::vec2 texCoords[2] = { glm::vec2(0.f, 0.f), glm::vec2(1.f, 1.f) };
+	texQuad = TexturedQuad::createTexturedQuad(geom, texCoords, texProgram);
+	// Load textures
+	tex.loadFromFile("images/mapita.png", TEXTURE_PIXEL_FORMAT_RGBA);
+
+	map = TileMap::createTileMap("levels/level011.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
 
 	//Player
 	GameObject *mainPlayer = GameObject::make_Object(0);
@@ -100,13 +118,17 @@ void Scene::update(int deltaTime)
 
 void Scene::render()
 {
+	fons->render(tex1);
 	map->render();
+	texQuad->render(tex);
 	float velocity = currentTime / 200;
-	//projection = glm::ortho(0.f + velocity, float(SCREEN_WIDTH - 1 + velocity), float(SCREEN_HEIGHT - 1), 0.f);
+	projection = glm::ortho(0.f + velocity, float(SCREEN_WIDTH - 1 + velocity), float(SCREEN_HEIGHT - 1), 0.f);
 
 	for (int i = 0; i < objects.size(); ++i) {
 		objects[i]->render();
 	}
+
+
 
 }
 
