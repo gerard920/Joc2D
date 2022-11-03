@@ -23,7 +23,8 @@ public:
 	virtual void setAlive(bool alive);
 	virtual void setSizePlayer(const glm::vec2 &size);
 	virtual glm::ivec2 getSizePlayer();
-
+	virtual void setInvulnerable(bool invulnerable);
+	virtual bool getInvulnerable();
 
 
 	virtual bool detectColisionMap(glm::ivec2 posAnterior);
@@ -53,7 +54,7 @@ public:
 
 private:
 	glm::ivec2 tileMapDispl, posPlayer, sizePlayer;
-	bool alive;
+	bool alive, invulnerable;
 	int lives, type;
 	bool canColision(int objectX, int objectY);
 

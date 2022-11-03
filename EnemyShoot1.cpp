@@ -2,7 +2,7 @@
 #include <iostream>
 #include <GL/glew.h>
 #include <GL/glut.h>
-#include "MainShoot1.h"
+#include "EnemyShoot1.h"
 
 
 #define JUMP_ANGLE_STEP 4
@@ -17,7 +17,7 @@
 
 
 
-void MainShoot1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
+void EnemyShoot1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
 	GameObject::init(tileMapPos, shaderProgram);
 	spritesheet.loadFromFile("images/ShootPlayer.png", TEXTURE_PIXEL_FORMAT_RGBA);
@@ -31,25 +31,25 @@ void MainShoot1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram
 	sprite->changeAnimation(0);
 }
 
-void MainShoot1::update(int deltaTime)
+void EnemyShoot1::update(int deltaTime)
 {
 	GameObject::update(deltaTime);
 
 	glm::ivec2 position = getPosition();
-	position.x += 2;
+	position.x -= 2;
 	setPosition(position);
 }
 
 
 
-int MainShoot1::getType() {
-	return 5;
+int EnemyShoot1::getType() {
+	return 6;
 }
 
-bool MainShoot1::detectColisionMap(glm::ivec2 posAnterior) {
+bool EnemyShoot1::detectColisionMap(glm::ivec2 posAnterior) {
 	if (GameObject::detectColisionMap(posAnterior)) {
 		quitarVida();
 		return true;
 	}
-	return false;	
+	return false;
 }

@@ -1,11 +1,13 @@
-﻿Build started 03/11/2022 16:12:43.
+﻿Build started 03/11/2022 23:27:39.
      1>Project "C:\Users\gserramia\Desktop\Uni\OpenGL_VS2015\2DGame\02-Bubble\02-Bubble\02-Bubble.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\02-Bubble.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\bin\HostX86\x86\CL.exe /c /I"..\..\..\libs\Simple OpenGL Image Library\src" /I..\..\..\libs\freeglut\include /I"..\..\..\libs\glew-1.13.0\include" /I..\..\..\libs\glm /ZI /JMC /nologo /W3 /WX- /diagnostics:classic /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TP /analyze- /FC /errorReport:prompt Enemy1.cpp MainPlayer.cpp MainShoot1.cpp
-         Enemy1.cpp
-         MainPlayer.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\bin\HostX86\x86\CL.exe /c /I"..\..\..\libs\Simple OpenGL Image Library\src" /I..\..\..\libs\freeglut\include /I"..\..\..\libs\glew-1.13.0\include" /I..\..\..\libs\glm /ZI /JMC /nologo /W3 /WX- /diagnostics:classic /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TP /analyze- /FC /errorReport:prompt Enemy2.cpp Enemy3.cpp Enemy4.cpp EnemyShoot1.cpp MainShoot1.cpp
+         Enemy2.cpp
+         Enemy3.cpp
+         Enemy4.cpp
+         EnemyShoot1.cpp
          MainShoot1.cpp
          Generating Code...
        Link:
@@ -21,6 +23,11 @@
          Debug\MainPlayer.obj
          Debug\Enemy1.obj
          Debug\MainShoot1.obj
+         Debug\Enemy2.obj
+         Debug\Enemy3.obj
+         Debug\Enemy4.obj
+         Debug\Boss.obj
+         Debug\EnemyShoot1.obj
          Debug\TexturedQuad.obj
          Debug\Sprite.obj
          Debug\Texture.obj
@@ -47,4 +54,4 @@ Build succeeded.
     4 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:02.53
+Time Elapsed 00:00:04.12

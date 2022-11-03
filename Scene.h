@@ -40,6 +40,16 @@ private:
 	TexturedQuad *texQuad;
 	TexturedQuad *fons;
 
+	enum TypeObject {
+		MainPlayer = 0,
+		Enemy1 = 1,
+		Enemy2 = 2,
+		Enemy3 = 3,
+		Enemy4 = 4,
+		MainPlayerShoot = 5,
+		EnemyShoot = 6,
+		Boos = 7,
+	};
 
 	ShaderProgram texProgram;
 	float currentTime;

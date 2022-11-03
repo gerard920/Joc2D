@@ -8,7 +8,12 @@
 #include "GameObject.h"
 #include "MainPlayer.h"
 #include "Enemy1.h"
+#include "Enemy2.h"
+#include "Enemy3.h"
+#include "Enemy4.h"
 #include "MainShoot1.h"
+#include "EnemyShoot1.h"
+
 #include "TileMap.h"
 
 #define JUMP_ANGLE_STEP 4
@@ -31,14 +36,31 @@ GameObject *GameObject::make_Object(int typeObject)
 		return new Enemy1();
 	}
 	else if (typeObject == 2) {
+		return new Enemy2();
+	}
+	else if (typeObject == 3) {
+		return new Enemy3();
+	}
+	else if (typeObject == 4) {
+		return new Enemy4();
+	}
+	else if (typeObject == 5) {
 		return new MainShoot1();
 	}
+	else if (typeObject == 6) {
+		return new EnemyShoot1();
+	}
+	else if (typeObject == 7) {
+		return new EnemyShoot1();
+	}
+	
 }
 
 void GameObject::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram) {
 	alive = true;
 	tileMapDispl = tileMapPos;
 	lives = 1;
+	invulnerable = false;
 }
 
 void GameObject::update(int deltaTime) {
@@ -86,7 +108,7 @@ bool GameObject::detectColisionObject(vector<GameObject*> objects ,int index) {
 				|| collisionMoveRight(posPlayer, sizePlayer, objects[i]->getPosition(), objects[i]->getSizePlayer()) || collisionMoveLeft(posPlayer, sizePlayer, objects[i]->getPosition(), objects[i]->getSizePlayer()))) {
 
 				quitarVida();
-				objects[i]->quitarVida();
+				objects[i]->quitarVida();				
 			}
 		}
 	}
@@ -110,11 +132,22 @@ bool GameObject::canColision(int objectX, int objectY) {
 }
 
 void GameObject::quitarVida() {
-	lives--;
-	if (lives <= 0) {
-		alive = false;
+	if (!this->invulnerable) {
+		lives--;
+		if (lives <= 0) {
+			alive = false;
+		}
 	}
 }
+
+void GameObject::setInvulnerable(bool invulnerable) {
+	this->invulnerable = invulnerable;
+}
+
+bool GameObject::getInvulnerable() {
+	return this->invulnerable;
+}
+
 
 bool GameObject::collisionMoveLeft(const glm::ivec2 &posObj1, const glm::ivec2 &sizeObj1, const glm::ivec2 &posObj2, const glm::ivec2 &sizeObj2) const
 {

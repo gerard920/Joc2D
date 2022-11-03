@@ -2,7 +2,7 @@
 #include <iostream>
 #include <GL/glew.h>
 #include <GL/glut.h>
-#include "Enemy1.h"
+#include "Enemy3.h"
 #include "Game.h"
 
 
@@ -18,11 +18,11 @@
 
 
 
-void Enemy1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
+void Enemy3::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
 	GameObject::init(tileMapPos, shaderProgram);
 
-	spritesheet.loadFromFile("images/Enemy1.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	spritesheet.loadFromFile("images/Enemy3.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	//Mida prsj	           //mida sheet que agafa 
 	setSizePlayer(glm::ivec2(46, 50));
 	sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, &shaderProgram);
@@ -37,7 +37,7 @@ void Enemy1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 	//sprite->setPosition(glm::vec2(float(tileMapDispl.x + posEnemy.x), float(tileMapDispl.y + posEnemy.y)));
 }
 
-void Enemy1::update(int deltaTime)
+void Enemy3::update(int deltaTime)
 {
 	GameObject::update(deltaTime);
 
@@ -53,25 +53,25 @@ void Enemy1::update(int deltaTime)
 			position.y -= 2;
 		}
 	}
-	else if  (bajando) {
+	else if (bajando) {
 		if (map->collisionMoveDown(getPosition(), getSizePlayer())) {
 			subiendo = true;
-				bajando = false;
+			bajando = false;
 		}
 		else {
 			position.y += 2;
 		}
 	}
-	
+
 	setPosition(position);
 	//sprite->setPosition(glm::vec2(float(tileMapDispl.x + posEnemy.x), float(tileMapDispl.y + posEnemy.y)));
 }
 
-int Enemy1::getType() {
-	return 1;
+int Enemy3::getType() {
+	return 3;
 }
 
-bool Enemy1::detectColisionMap(glm::ivec2 posAnterior) {
+bool Enemy3::detectColisionMap(glm::ivec2 posAnterior) {
 	/*if (GameObject::detectColisionMap(posAnterior)) {
 		this->setPosition(posAnterior);
 		return true;

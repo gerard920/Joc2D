@@ -69,6 +69,21 @@
     <ClInclude Include="MainShoot1.h">
       <Filter>Archivos de encabezado\Factory</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy2.h">
+      <Filter>Archivos de encabezado\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy3.h">
+      <Filter>Archivos de encabezado\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy4.h">
+      <Filter>Archivos de encabezado\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>Archivos de encabezado\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyShoot1.h">
+      <Filter>Archivos de encabezado\Factory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -117,6 +132,21 @@
       <Filter>Archivos de código fuente\Factory</Filter>
     </ClCompile>
     <ClCompile Include="MainShoot1.cpp">
+      <Filter>Archivos de código fuente\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy2.cpp">
+      <Filter>Archivos de código fuente\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy3.cpp">
+      <Filter>Archivos de código fuente\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy4.cpp">
+      <Filter>Archivos de código fuente\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>Archivos de código fuente\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyShoot1.cpp">
       <Filter>Archivos de código fuente\Factory</Filter>
     </ClCompile>
   </ItemGroup>

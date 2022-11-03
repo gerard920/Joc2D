@@ -16,6 +16,11 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Enemy1.h" />
+    <ClInclude Include="Enemy2.h" />
+    <ClInclude Include="Enemy3.h" />
+    <ClInclude Include="Enemy4.h" />
+    <ClInclude Include="Boss.h" />
+    <ClInclude Include="EnemyShoot1.h" />
     <ClInclude Include="MainShoot1.h" />
     <ClInclude Include="MainPlayer.h" />
     <ClInclude Include="MenuPrincipal.h" />
@@ -41,6 +46,11 @@
     <ClCompile Include="MainPlayer.cpp" />
     <ClCompile Include="Enemy1.cpp" />
     <ClCompile Include="MainShoot1.cpp" />
+    <ClCompile Include="Enemy2.cpp" />
+    <ClCompile Include="Enemy3.cpp" />
+    <ClCompile Include="Enemy4.cpp" />
+    <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="EnemyShoot1.cpp" />
     <ClCompile Include="TexturedQuad.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
