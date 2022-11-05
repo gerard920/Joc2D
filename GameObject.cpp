@@ -67,6 +67,12 @@ void GameObject::update(int deltaTime) {
 	sprite->update(deltaTime);
 }
 
+
+void GameObject::update(int deltaTime, const glm::vec2 &mainPlayerPos) {
+	this->mainPlayerPos = mainPlayerPos;
+	this->update(deltaTime);
+}
+
 void GameObject::render()
 {
 	sprite->render();
@@ -95,6 +101,10 @@ void GameObject::setPosition(const glm::vec2 &pos)
 
 glm::ivec2 GameObject::getPosition() {
 	return this->posPlayer;
+}
+
+glm::ivec2 GameObject::getMainPlayerPos() {
+	return this->mainPlayerPos;
 }
 
 int GameObject::getType() {
@@ -127,6 +137,11 @@ void GameObject::setAlive(bool alive) {
 	this->alive = alive;
 }
 
+vector<GameObject*> GameObject::disparar(ShaderProgram texProgram)
+{
+	return vector<GameObject*>();
+}
+
 bool GameObject::canColision(int objectX, int objectY) {
 	return Game::instance().canColission(objectX, objectY);
 }
@@ -147,6 +162,18 @@ void GameObject::setInvulnerable(bool invulnerable) {
 bool GameObject::getInvulnerable() {
 	return this->invulnerable;
 }
+
+void GameObject::setSubtype(int subtype) {
+	this->subtype = subtype;
+}
+
+int GameObject::getSubtype() {
+	return this->subtype;
+}
+
+void GameObject::setLives(int lives) {
+	this->lives = lives;
+ }
 
 
 bool GameObject::collisionMoveLeft(const glm::ivec2 &posObj1, const glm::ivec2 &sizeObj1, const glm::ivec2 &posObj2, const glm::ivec2 &sizeObj2) const

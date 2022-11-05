@@ -31,7 +31,7 @@ void MenuPrincipal::init(const int& idScene) {
 	background = TexturedQuad::createTexturedQuad(geom, texCoords, texProgram);
 
 	//Load textures
-	sceneMenu.loadFromFile("images/menup.jpg", TEXTURE_PIXEL_FORMAT_RGBA);
+	sceneMenu.loadFromFile("images/Modo_png.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	sceneCredits.loadFromFile("images/credits.png", TEXTURE_PIXEL_FORMAT_RGB);
 	sceneIns.loadFromFile("images/rocks.jpg", TEXTURE_PIXEL_FORMAT_RGBA);
 }

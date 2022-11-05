@@ -1,15 +1,10 @@
-﻿Build started 03/11/2022 23:27:39.
+﻿Build started 05/11/2022 21:43:57.
      1>Project "C:\Users\gserramia\Desktop\Uni\OpenGL_VS2015\2DGame\02-Bubble\02-Bubble\02-Bubble.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\02-Bubble.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\bin\HostX86\x86\CL.exe /c /I"..\..\..\libs\Simple OpenGL Image Library\src" /I..\..\..\libs\freeglut\include /I"..\..\..\libs\glew-1.13.0\include" /I..\..\..\libs\glm /ZI /JMC /nologo /W3 /WX- /diagnostics:classic /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TP /analyze- /FC /errorReport:prompt Enemy2.cpp Enemy3.cpp Enemy4.cpp EnemyShoot1.cpp MainShoot1.cpp
-         Enemy2.cpp
-         Enemy3.cpp
-         Enemy4.cpp
-         EnemyShoot1.cpp
-         MainShoot1.cpp
-         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\bin\HostX86\x86\CL.exe /c /I"..\..\..\libs\Simple OpenGL Image Library\src" /I..\..\..\libs\freeglut\include /I"..\..\..\libs\glew-1.13.0\include" /I..\..\..\libs\glm /ZI /JMC /nologo /W3 /WX- /diagnostics:classic /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TP /analyze- /FC /errorReport:prompt Game.cpp
+         Game.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\bin\HostX86\x86\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\gserramia\Desktop\Uni\OpenGL_VS2015\2DGame\02-Bubble\Debug\02-Bubble.exe" /INCREMENTAL /NOLOGO /LIBPATH:"..\..\..\libs\Simple OpenGL Image Library\projects\VC9\Debug" /LIBPATH:..\..\..\libs\freeglut\lib /LIBPATH:"..\..\..\libs\glew-1.13.0\lib\Release\Win32" SOIL.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG:FASTLINK /PDB:"C:\Users\gserramia\Desktop\Uni\OpenGL_VS2015\2DGame\02-Bubble\Debug\02-Bubble.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\gserramia\Desktop\Uni\OpenGL_VS2015\2DGame\02-Bubble\Debug\02-Bubble.lib" /MACHINE:X86 Debug\Game.obj
          Debug\main.obj
@@ -54,4 +49,4 @@ Build succeeded.
     4 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:04.12
+Time Elapsed 00:00:01.32

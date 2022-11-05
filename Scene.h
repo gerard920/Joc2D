@@ -53,6 +53,11 @@ private:
 
 	ShaderProgram texProgram;
 	float currentTime;
+	float initialTime;
+	float initialPos;
+	float mapPositionEsquerra;
+	float timeXPressed;
+	bool shoot;
 	glm::mat4 projection;
 	glm::ivec2 posMainPlayer;
 	int radiusMainPlayer;

@@ -10,4 +10,8 @@ public:
 	bool subiendo, bajando;
 	bool detectColisionMap(glm::ivec2 posAnterior);
 	int getType();
+	int currentTime;
+	int rad;
+	glm::ivec2 initialPosition;
+
 };

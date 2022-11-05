@@ -10,4 +10,6 @@ public:
 	bool subiendo, bajando;
 	bool detectColisionMap(glm::ivec2 posAnterior);
 	int getType();
+	virtual vector<GameObject*> disparar(ShaderProgram texProgram);
+
 };

@@ -26,45 +26,21 @@ void Enemy3::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 	//Mida prsj	           //mida sheet que agafa 
 	setSizePlayer(glm::ivec2(46, 50));
 	sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, &shaderProgram);
-	//sprite->setNumberAnimations(1);
 
-	//sprite->setAnimationSpeed(STAND_LEFT, 8);
-	//sprite->addKeyframe(STAND_LEFT, glm::vec2(0.f, 0.339f));
 	subiendo = true;
 	bajando = false;
-	//sprite->changeAnimation(0);
-	//tileMapDispl = tileMapPos;
-	//sprite->setPosition(glm::vec2(float(tileMapDispl.x + posEnemy.x), float(tileMapDispl.y + posEnemy.y)));
+
 }
 
 void Enemy3::update(int deltaTime)
 {
 	GameObject::update(deltaTime);
 
-	glm::ivec2 position = getPosition();
+	glm::ivec2 position = getPosition();	
+	glm::ivec2 mainPlayerPos = this->getMainPlayerPos();
 
-
-	if (subiendo) {
-		if (map->collisionMoveUp(getPosition(), getSizePlayer())) {
-			subiendo = false;
-			bajando = true;
-		}
-		else {
-			position.y -= 2;
-		}
-	}
-	else if (bajando) {
-		if (map->collisionMoveDown(getPosition(), getSizePlayer())) {
-			subiendo = true;
-			bajando = false;
-		}
-		else {
-			position.y += 2;
-		}
-	}
 
 	setPosition(position);
-	//sprite->setPosition(glm::vec2(float(tileMapDispl.x + posEnemy.x), float(tileMapDispl.y + posEnemy.y)));
 }
 
 int Enemy3::getType() {

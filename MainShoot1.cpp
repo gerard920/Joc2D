@@ -20,9 +20,17 @@
 void MainShoot1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
 	GameObject::init(tileMapPos, shaderProgram);
-	spritesheet.loadFromFile("images/ShootPlayer.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	if (this->getSubtype() == 0) {
+		spritesheet.loadFromFile("images/ShootPlayer.png", TEXTURE_PIXEL_FORMAT_RGBA);
+		setSizePlayer(glm::ivec2(21, 4));
+	}
+	else {
+		spritesheet.loadFromFile("images/Enemy1.png", TEXTURE_PIXEL_FORMAT_RGBA);
+		this->setLives(4);
+		setSizePlayer(glm::ivec2(36, 8));
+	}
 	//Mida prsj	           //mida sheet que agafa 
-	setSizePlayer(glm::ivec2(21, 4));
+	
 	sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(1);
 

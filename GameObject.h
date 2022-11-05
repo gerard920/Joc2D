@@ -13,6 +13,7 @@ public:
 
 	virtual void init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram);
 	virtual void update(int deltaTime);
+	virtual void update(int deltaTime, const glm::vec2 &mainPlayerPos);
 	virtual void render();
 
 	virtual void setTileMap(TileMap *tileMap);
@@ -23,9 +24,15 @@ public:
 	virtual void setAlive(bool alive);
 	virtual void setSizePlayer(const glm::vec2 &size);
 	virtual glm::ivec2 getSizePlayer();
+	virtual glm::ivec2 getMainPlayerPos();
+
+	virtual void setLives(int lives);
+
 	virtual void setInvulnerable(bool invulnerable);
 	virtual bool getInvulnerable();
 
+	virtual void setSubtype(int subtype);
+	virtual int getSubtype();
 
 	virtual bool detectColisionMap(glm::ivec2 posAnterior);
 	virtual bool detectColisionObject(vector<GameObject*> objects, int index);
@@ -42,22 +49,22 @@ public:
 	Sprite *sprite;
 	TileMap *map;
 
-	int coliderx, colidery, radius;
 
 	enum GameObjectAnims {
 		STAND_LEFT, STAND_RIGHT, MOVE_LEFT, MOVE_RIGHT,
 		STAND_UP, STAND_DOWN, MOVE_UP, MOVE_DOWN
 	};
 
+	virtual vector<GameObject*> disparar(ShaderProgram texProgram);
 	
 
 
 private:
-	glm::ivec2 tileMapDispl, posPlayer, sizePlayer;
+	glm::ivec2 tileMapDispl, posPlayer, sizePlayer, mainPlayerPos;
 	bool alive, invulnerable;
-	int lives, type;
+	int lives, type, subtype;
 	bool canColision(int objectX, int objectY);
-
+	
 
 
 };

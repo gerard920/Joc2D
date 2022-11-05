@@ -44,6 +44,9 @@ public:
 
 	bool canColission(int objectX, int objectY);
 
+	int getGameLives();
+	void setGameLives(int gameLives);
+
 private:
 	bool bPlay;                       // Continue to play game?
 	Scene *scene;                      // Scene to render
@@ -54,6 +57,8 @@ private:
 	bool inMenu, inPlay;
 	int idSceneMenu;
 
+	int gameLives;
+	bool resetScene;
 	bool collisionMatrix[8][8] = {
 		//P, E1, E2, E3, E4, SP, SE, BOSS,
 		 {0,  1,  1,  1,  1,  0,  1, 1},

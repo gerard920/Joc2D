@@ -26,15 +26,9 @@ void Enemy1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 	//Mida prsj	           //mida sheet que agafa 
 	setSizePlayer(glm::ivec2(46, 50));
 	sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, &shaderProgram);
-	//sprite->setNumberAnimations(1);
 
-	//sprite->setAnimationSpeed(STAND_LEFT, 8);
-	//sprite->addKeyframe(STAND_LEFT, glm::vec2(0.f, 0.339f));
 	subiendo = true;
 	bajando = false;
-	//sprite->changeAnimation(0);
-	//tileMapDispl = tileMapPos;
-	//sprite->setPosition(glm::vec2(float(tileMapDispl.x + posEnemy.x), float(tileMapDispl.y + posEnemy.y)));
 }
 
 void Enemy1::update(int deltaTime)
@@ -64,7 +58,6 @@ void Enemy1::update(int deltaTime)
 	}
 	
 	setPosition(position);
-	//sprite->setPosition(glm::vec2(float(tileMapDispl.x + posEnemy.x), float(tileMapDispl.y + posEnemy.y)));
 }
 
 int Enemy1::getType() {
@@ -79,6 +72,23 @@ bool Enemy1::detectColisionMap(glm::ivec2 posAnterior) {
 	return false;
 
 }
+
+vector<GameObject*> Enemy1::disparar(ShaderProgram texProgram)
+{
+
+	vector<GameObject*> disparos;	
+	if (1 + rand() % 100 == 1) {
+		GameObject* bala1 = GameObject::make_Object(6);
+		bala1->init(glm::ivec2(32, 16), texProgram);
+		bala1->setPosition(glm::vec2(this->getPosition().x, this->getPosition().y));
+
+		bala1->setTileMap(map);
+		disparos.push_back(bala1);
+	}
+
+	return disparos;
+}
+
 
 
 

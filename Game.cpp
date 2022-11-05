@@ -4,11 +4,12 @@
 
 void Game::init()
 {
-	bPlay = true; inMenu = true; inPlay = false;
+	bPlay = true; inMenu = true; inPlay = false; resetScene = false;
 	idSceneMenu = 0;
 
-	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+	gameLives = 3;
 
+	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 	scene = new Scene();
 	scene->init();
 
@@ -45,16 +46,26 @@ bool Game::update(int deltaTime)
 		menu->update(deltaTime, idSceneMenu);
 	}	
 	else if (inPlay) {
-		if (getKey(109)) { //M --> Volvemos al menu
+		if (resetScene) {
+			resetScene = false;
+			delete scene;
+			scene = new Scene();
+			scene->init();
+			inPlay = true;
+			inMenu = false;
+		}
+		if (getKey(109) || gameLives == 0) { //M --> Volvemos al menu
+			gameLives = 3;
 			idSceneMenu = 0;
 			delete menu;
 		    menu = new MenuPrincipal();
 			menu->init(idSceneMenu);
 			inPlay = false;
 			inMenu = true;
-		
-		}
+
+		}		
 		scene->update(deltaTime);
+
 	}
 
 	
@@ -121,6 +132,12 @@ bool Game::canColission(int objectX, int objectY) {
 }
 
 
-
+int Game::getGameLives() {
+	return this->gameLives;
+}
+void Game::setGameLives(int gameLives) {
+	this->gameLives = gameLives;
+	resetScene = true;
+}
 
 

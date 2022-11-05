@@ -24,11 +24,8 @@ void EnemyShoot1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgra
 	//Mida prsj	           //mida sheet que agafa 
 	setSizePlayer(glm::ivec2(21, 4));
 	sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, &shaderProgram);
-	sprite->setNumberAnimations(1);
 
-	sprite->setAnimationSpeed(STAND_LEFT, 8);
-	sprite->addKeyframe(STAND_LEFT, glm::vec2(0.f, 0.339f));
-	sprite->changeAnimation(0);
+	//rotacio
 }
 
 void EnemyShoot1::update(int deltaTime)
@@ -36,7 +33,24 @@ void EnemyShoot1::update(int deltaTime)
 	GameObject::update(deltaTime);
 
 	glm::ivec2 position = getPosition();
-	position.x -= 2;
+
+	int subtype = this->getSubtype();
+	switch (subtype) {
+	case 0:
+		position.x -= 1;
+		position.y -= 1;
+		break;
+	case 1:
+		position.x -= 1;
+		break;
+	case 2:
+		position.x -= 1;
+		position.y += 1;
+		break;
+
+	}
+
+
 	setPosition(position);
 }
 
