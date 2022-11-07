@@ -13,7 +13,6 @@
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Enemy1.h" />
     <ClInclude Include="Enemy2.h" />
@@ -27,7 +26,6 @@
     <ClInclude Include="MainPlayer.h" />
     <ClInclude Include="MenuPrincipal.h" />
     <ClInclude Include="TexturedQuad.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
@@ -38,11 +36,9 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="MenuPrincipal.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="MainPlayer.cpp" />

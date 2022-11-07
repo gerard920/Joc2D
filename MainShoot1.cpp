@@ -21,22 +21,22 @@ void MainShoot1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram
 {
 	GameObject::init(tileMapPos, shaderProgram);
 	if (this->getSubtype() != 1) {
-		spritesheet.loadFromFile("images/ShootPlayer.png", TEXTURE_PIXEL_FORMAT_RGBA);
-		setSizePlayer(glm::ivec2(21, 6));
+		spritesheet.loadFromFile("images/Shoot.png", TEXTURE_PIXEL_FORMAT_RGBA);
+		setSizePlayer(glm::ivec2(32, 16));
 	}
 	else {
-		spritesheet.loadFromFile("images/Enemy1.png", TEXTURE_PIXEL_FORMAT_RGBA);
+		spritesheet.loadFromFile("images/SuperShoot.png", TEXTURE_PIXEL_FORMAT_RGBA);
 		this->setLives(4);
-		setSizePlayer(glm::ivec2(36, 8));
+		setSizePlayer(glm::ivec2(45, 25));
 	}
 	//Mida prsj	           //mida sheet que agafa 
 	
 	sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, &shaderProgram);
-	sprite->setNumberAnimations(1);
+	/*sprite->setNumberAnimations(1);
 
 	sprite->setAnimationSpeed(STAND_LEFT, 8);
 	sprite->addKeyframe(STAND_LEFT, glm::vec2(0.f, 0.339f));
-	sprite->changeAnimation(0);
+	sprite->changeAnimation(0);*/
 }
 
 void MainShoot1::update(int deltaTime)

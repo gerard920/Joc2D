@@ -20,16 +20,16 @@
 void EnemyShoot1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
 	GameObject::init(tileMapPos, shaderProgram);
-	spritesheet.loadFromFile("images/EnemyShoot.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	spritesheet.loadFromFile("images/EnemyShoot2.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	//Mida prsj	           //mida sheet que agafa 
-	setSizePlayer(glm::ivec2(21, 6));
+	setSizePlayer(glm::ivec2(32, 16));
 
 	sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, &shaderProgram);
-	sprite->setNumberAnimations(1);
+	//sprite->setNumberAnimations(1);
 
-	sprite->setAnimationSpeed(STAND_LEFT, 8);
-	sprite->addKeyframe(STAND_LEFT, glm::vec2(0.f, 0.339f));
-	sprite->changeAnimation(0);
+	//sprite->setAnimationSpeed(STAND_LEFT, 8);
+	//sprite->addKeyframe(STAND_LEFT, glm::vec2(0.f, 0.339f));
+	//sprite->changeAnimation(0);
 	//rotacio
 }
 

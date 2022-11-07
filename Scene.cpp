@@ -48,6 +48,7 @@ void Scene::init()
 	forceActivated = false;
 	shootForceBuff = false;
 	f200 = true; f300 = true; f400 = true; f500 = true; f600 = true; f700 = true; f800 = true;
+	lastShootPlayer = 0;
 
 	//FONDO
 
@@ -261,7 +262,7 @@ void Scene::apretarTecla() {
 
 	}
 
-	//X or x shoot
+	
 	/*if ((Game::instance().getKey(88) || Game::instance().getKey(120)) && (currentTime - lastShootPlayer) / 1000 >= 1) {
 		lastShootPlayer = currentTime;
 
@@ -272,44 +273,50 @@ void Scene::apretarTecla() {
 		objects.push_back(shoot1);
 	}*/
 
-	if (Game::instance().getKey(88) || Game::instance().getKey(120)) {
-		timeXPressed += 1;
-	}
-	else {
-		if (shoot) {
-			shoot = false;
-			GameObject *shoot1;
-			if (timeXPressed < 50) {
-				shoot1 = GameObject::make_Object(MainPlayerShoot);
-				shoot1->setSubtype(0);
-				if (shootForceBuff) {
-					GameObject *shoot2 = GameObject::make_Object(MainPlayerShoot);
-					GameObject *shoot3 = GameObject::make_Object(MainPlayerShoot);
-					shoot2->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-					shoot2->setPosition(glm::vec2((posMainPlayer.x + 46), posMainPlayer.y + 46 / 2 - 4 / 2));
-					shoot2->setTileMap(map);
-					shoot2->setSubtype(2);
-					shoot3->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-					shoot3->setPosition(glm::vec2((posMainPlayer.x + 46), posMainPlayer.y + 46 / 2 - 4 / 2));
-					shoot3->setTileMap(map);
-					shoot3->setSubtype(3);
-					objects.push_back(shoot2);
-					objects.push_back(shoot3);
-				}
-			}
-			else {
-				shoot1 = GameObject::make_Object(MainPlayerShoot);
-				shoot1->setSubtype(1);
-			}
-			shoot1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-			shoot1->setPosition(glm::vec2((posMainPlayer.x + 46), posMainPlayer.y + 46 / 2 - 4 / 2));
-			shoot1->setTileMap(map);
-			objects.push_back(shoot1);
+	//X or x shoot
+	if ((currentTime - lastShootPlayer) / 450 >= 1) {
+
+		if (Game::instance().getKey(88) || Game::instance().getKey(120)) {
+			timeXPressed += 1;
 		}
-		timeXPressed = 0;
-	}
-	if (timeXPressed > 0) {
-		shoot = true;
+		else {
+			if (shoot) {
+				shoot = false;
+				GameObject *shoot1;
+				if (timeXPressed < 50) {
+					shoot1 = GameObject::make_Object(MainPlayerShoot);
+					shoot1->setSubtype(0);
+					if (shootForceBuff) {
+						GameObject *shoot2 = GameObject::make_Object(MainPlayerShoot);
+						GameObject *shoot3 = GameObject::make_Object(MainPlayerShoot);
+						shoot2->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+						shoot2->setPosition(glm::vec2((posMainPlayer.x + 46), posMainPlayer.y + 46 / 2 - 4 / 2));
+						shoot2->setTileMap(map);
+						shoot2->setSubtype(2);
+						shoot3->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+						shoot3->setPosition(glm::vec2((posMainPlayer.x + 46), posMainPlayer.y + 46 / 2 - 4 / 2));
+						shoot3->setTileMap(map);
+						shoot3->setSubtype(3);
+						objects.push_back(shoot2);
+						objects.push_back(shoot3);
+					}
+				}
+				else {
+					shoot1 = GameObject::make_Object(MainPlayerShoot);
+					shoot1->setSubtype(1);
+				}
+				shoot1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+				shoot1->setPosition(glm::vec2((posMainPlayer.x + 46), posMainPlayer.y + 46 / 2 - 4 / 2));
+				shoot1->setTileMap(map);
+				objects.push_back(shoot1);
+				lastShootPlayer = currentTime;
+
+			}
+			timeXPressed = 0;
+		}
+		if (timeXPressed > 0) {
+			shoot = true;
+		}
 	}
 }
 
