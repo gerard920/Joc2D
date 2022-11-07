@@ -47,6 +47,16 @@ public:
 	int getGameLives();
 	void setGameLives(int gameLives);
 
+	int getStatusGame();
+	void setStatusGame(int statusGame);
+
+	enum SatusGame {
+		Playing = 0,
+		Lose = 1,
+		Win = 2
+	};
+
+
 private:
 	bool bPlay;                       // Continue to play game?
 	Scene *scene;                      // Scene to render
@@ -56,6 +66,7 @@ private:
 
 	bool inMenu, inPlay;
 	int idSceneMenu;
+	int statusGame;
 
 	int gameLives;
 	bool resetScene;

@@ -21,6 +21,7 @@ void Game::init()
 
 bool Game::update(int deltaTime)
 {
+
 	//Para entrar a jugar
 	if (inMenu) {
 		if (idSceneMenu == 0) {
@@ -38,11 +39,11 @@ bool Game::update(int deltaTime)
 				inMenu = false;
 			}
 		}
-		else if (idSceneMenu == 1 || idSceneMenu == 2) {
+		else if (idSceneMenu == 1 || idSceneMenu == 2 || idSceneMenu == 3 || idSceneMenu == 4) {
 			if (getKey(109) || getKey(77)) { // M
 				idSceneMenu = 0;
 			}
-		}
+		}		
 		menu->update(deltaTime, idSceneMenu);
 	}	
 	else if (inPlay) {
@@ -54,18 +55,33 @@ bool Game::update(int deltaTime)
 			inPlay = true;
 			inMenu = false;
 		}
-		if ((getKey(109) || getKey(77)) || gameLives == 0) { //M --> Volvemos al menu
+		if ((getKey(109) || getKey(77)) || statusGame == 1 || statusGame == 2) { //M --> Volvemos al menu
 			gameLives = 3;
-			idSceneMenu = 0;
 			delete menu;
 		    menu = new MenuPrincipal();
-			menu->init(idSceneMenu);
+			if (statusGame == 1) {
+				idSceneMenu = 3;
+				menu->init(idSceneMenu);
+
+			}
+			else if (statusGame == 2) {
+				idSceneMenu = 4;
+				menu->init(idSceneMenu);
+
+			}
+			else {
+				idSceneMenu = 0;
+				menu->init(idSceneMenu);
+			}
 			inPlay = false;
 			inMenu = true;
 
 		}		
-		scene->update(deltaTime);
+		if (gameLives == 0) {
+			statusGame = 1;		
+		}
 
+		scene->update(deltaTime);
 	}
 
 	
@@ -140,4 +156,11 @@ void Game::setGameLives(int gameLives) {
 	resetScene = true;
 }
 
+
+int Game::getStatusGame() {
+	return this->statusGame;
+}
+void Game::setStatusGame(int statusGame) {
+	this->statusGame = statusGame;
+}
 

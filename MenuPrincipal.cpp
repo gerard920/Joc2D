@@ -34,6 +34,10 @@ void MenuPrincipal::init(const int& idScene) {
 	sceneMenu.loadFromFile("images/Menu.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	sceneCredits.loadFromFile("images/Credits.png", TEXTURE_PIXEL_FORMAT_RGB);
 	sceneIns.loadFromFile("images/Instructions.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	sceneWin.loadFromFile("images/Credits.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	sceneLoose.loadFromFile("images/Instructions.png", TEXTURE_PIXEL_FORMAT_RGBA);
+
+	Game::instance().setStatusGame(0);
 }
 
 void MenuPrincipal::update(int deltaTime, int id) {
@@ -65,6 +69,14 @@ void MenuPrincipal::render() {
 		break;
 	case 2:
 		background->render(sceneIns);
+		break;
+	
+	case 3:
+		background->render(sceneLoose);
+		break;
+	
+	case 4:
+		background->render(sceneWin);
 		break;
 	}
 }

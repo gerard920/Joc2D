@@ -78,7 +78,7 @@ void Scene::init()
 	enemigo->setTileMap(map);
 	objects.push_back(enemigo);
 
-	GameObject *enemigo3 = GameObject::make_Object(Enemy2);
+	GameObject *enemigo3 = GameObject::make_Object(Boss);
 	enemigo3->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 	enemigo3->setPosition(glm::vec2(((INIT_ENEMY_X_TILES - 4) * map->getTileSize()), (INIT_ENEMY_Y_TILES - 6) * map->getTileSize()));
 	enemigo3->setTileMap(map);
@@ -91,53 +91,55 @@ void Scene::init()
 
 void Scene::update(int deltaTime)
 {
-	currentTime += deltaTime;
+	int statusGame = Game::instance().getStatusGame();
+	if (statusGame == 0) { //playing
+		currentTime += deltaTime;
 
-	glm::mat4 modelview;
-	texProgram.use();
-	texProgram.setUniformMatrix4f("projection", projection);
-	texProgram.setUniform4f("color", 1.0f, 1.0f, 1.0f, 1.0f);
-	modelview = glm::mat4(1.0f);
-	texProgram.setUniformMatrix4f("modelview", modelview);
-	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
+		glm::mat4 modelview;
+		texProgram.use();
+		texProgram.setUniformMatrix4f("projection", projection);
+		texProgram.setUniform4f("color", 1.0f, 1.0f, 1.0f, 1.0f);
+		modelview = glm::mat4(1.0f);
+		texProgram.setUniformMatrix4f("modelview", modelview);
+		texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 
-	
-	apretarTecla();
-	posicionarObjetos();
 
-	for (int i = 0; i < objects.size(); ++i) {
+		apretarTecla();
+		posicionarObjetos();
 
-		glm::ivec2 posAnterior = objects[i]->getPosition();
-		int currentFlame = 5;
+		for (int i = 0; i < objects.size(); ++i) {
 
-		objects[i]->update(deltaTime);
-		objects[i]->detectColisionMap(posAnterior);
-		objects[i]->detectColisionObject(objects, i);
+			glm::ivec2 posAnterior = objects[i]->getPosition();
+			int currentFlame = 5;
 
-		switchCaseInTypeOfObject(i, posAnterior);			
+			objects[i]->update(deltaTime);
+			objects[i]->detectColisionMap(posAnterior);
+			objects[i]->detectColisionObject(objects, i);
 
-		if (!objects[i]->isAlive()) {
-			if (objects[i]->getType() == 0) {			
-				Game::instance().setGameLives(Game::instance().getGameLives() - 1);
+			switchCaseInTypeOfObject(i, posAnterior);
+
+			if (!objects[i]->isAlive()) {
+				if (objects[i]->getType() == 0) {
+					Game::instance().setGameLives(Game::instance().getGameLives() - 1);
+				}
+				/*Explosion *explosion = new Explosion();
+				explosion->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+				explosion->setPosition(posAnterior);
+				explosion->setTime(currentTime);
+				explosiones.push_back(explosion);*/
+				deleteObject(i);
 			}
-			/*Explosion *explosion = new Explosion();
-			explosion->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-			explosion->setPosition(posAnterior);
-			explosion->setTime(currentTime);
-			explosiones.push_back(explosion);*/
-			deleteObject(i);
-		}
 
+		}
+		/*for (int i = 0; i < explosiones.size(); ++i) {
+			explosiones[i]->update(deltaTime);
+			if ((currentTime - explosiones[i]->getTime()) / 1000 > 2) {
+				Explosion* eliminar = explosiones[i];
+				explosiones.erase(std::find(explosiones.begin(), explosiones.end(), explosiones[i]));
+				delete eliminar;
+			}
+		}*/
 	}
-	/*for (int i = 0; i < explosiones.size(); ++i) {
-		explosiones[i]->update(deltaTime);
-		if ((currentTime - explosiones[i]->getTime()) / 1000 > 2) {
-			Explosion* eliminar = explosiones[i];
-			explosiones.erase(std::find(explosiones.begin(), explosiones.end(), explosiones[i]));
-			delete eliminar;
-		}
-	}*/
-
 }
 
 void Scene::render()
@@ -170,17 +172,24 @@ void Scene::render()
 		objects[i]->render();
 	}
 
-	for (int i = 0; i < explosiones.size(); ++i) {
+	/*for (int i = 0; i < explosiones.size(); ++i) {
 		explosiones[i]->render();
+	}*/
+
+	int statusGame = Game::instance().getStatusGame();
+	if (statusGame == 1) { //loose
+
 	}
+	else if (statusGame == 2) { //win
 
-
-
-
+	}
 }
 
 void Scene::deleteObject(int indexObject) {
 	GameObject* eliminar = objects[indexObject];
+	if (eliminar->getType() == Boss) {
+		Game::instance().setStatusGame(2);
+	}
 	objects.erase(std::find(objects.begin(), objects.end(), objects[indexObject]));
 	delete eliminar;
 }

@@ -28,7 +28,7 @@ private:
 	TexturedQuad* background;
 	ShaderProgram simpleProgram, texProgram;
 	glm::mat4 projection;
-	Texture sceneMenu, sceneCredits, sceneIns;
+	Texture sceneMenu, sceneCredits, sceneIns, sceneWin, sceneLoose;
 };
 
 #endif // _MenuPrincipal_INCLUDE

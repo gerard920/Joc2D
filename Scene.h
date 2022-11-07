@@ -41,6 +41,14 @@ private:
 	TexturedQuad *texQuad;
 	TexturedQuad *fons;
 
+	TexturedQuad *win;
+	Texture texWin;
+
+	TexturedQuad *loose;
+	Texture texLoose;
+
+
+
 	enum TypeObject {
 		MainPlayer = 0,
 		Enemy1 = 1,
