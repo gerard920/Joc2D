@@ -20,9 +20,9 @@
 void MainShoot1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
 	GameObject::init(tileMapPos, shaderProgram);
-	if (this->getSubtype() == 0) {
+	if (this->getSubtype() != 1) {
 		spritesheet.loadFromFile("images/ShootPlayer.png", TEXTURE_PIXEL_FORMAT_RGBA);
-		setSizePlayer(glm::ivec2(21, 4));
+		setSizePlayer(glm::ivec2(21, 6));
 	}
 	else {
 		spritesheet.loadFromFile("images/Enemy1.png", TEXTURE_PIXEL_FORMAT_RGBA);
@@ -44,8 +44,27 @@ void MainShoot1::update(int deltaTime)
 	GameObject::update(deltaTime);
 
 	glm::ivec2 position = getPosition();
-	position.x += 2;
+
+	int subtype = this->getSubtype();
+	switch (subtype) {
+	case 2:
+		position.x += 1;
+		position.y -= 1;
+		break;
+	case 0:
+	case 1:
+		position.x += 1;
+		break;
+	case 3:
+		position.x += 1;
+		position.y += 1;
+		break;
+
+	}
+
 	setPosition(position);
+
+
 }
 
 

@@ -24,13 +24,13 @@ bool Game::update(int deltaTime)
 	//Para entrar a jugar
 	if (inMenu) {
 		if (idSceneMenu == 0) {
-			if (getKey(99)) { //C --> pantalla Creditos
+			if (getKey(99) || getKey(67)) { //C --> pantalla Creditos
 				idSceneMenu = 1;				
 			}
-			else if (getKey(105)) { //I --> pantalla Creditos
+			else if (getKey(105) || getKey(73)) { //I --> pantalla Creditos
 				idSceneMenu = 2;
 			}
-			else if (getKey(106)) { //J --> Nos vamos a la escena de jugar
+			else if (getKey(80) || getKey(112)) { //P --> Nos vamos a la escena de play
 				delete scene;
 				scene = new Scene();
 				scene->init();
@@ -39,7 +39,7 @@ bool Game::update(int deltaTime)
 			}
 		}
 		else if (idSceneMenu == 1 || idSceneMenu == 2) {
-			if (getKey(109)) { // M
+			if (getKey(109) || getKey(77)) { // M
 				idSceneMenu = 0;
 			}
 		}
@@ -54,7 +54,7 @@ bool Game::update(int deltaTime)
 			inPlay = true;
 			inMenu = false;
 		}
-		if (getKey(109) || gameLives == 0) { //M --> Volvemos al menu
+		if ((getKey(109) || getKey(77)) || gameLives == 0) { //M --> Volvemos al menu
 			gameLives = 3;
 			idSceneMenu = 0;
 			delete menu;

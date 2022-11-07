@@ -11,8 +11,11 @@
 #include "Enemy2.h"
 #include "Enemy3.h"
 #include "Enemy4.h"
+#include "Boss.h"
 #include "MainShoot1.h"
 #include "EnemyShoot1.h"
+#include "Force.h"
+
 
 #include "TileMap.h"
 
@@ -51,8 +54,12 @@ GameObject *GameObject::make_Object(int typeObject)
 		return new EnemyShoot1();
 	}
 	else if (typeObject == 7) {
-		return new EnemyShoot1();
+		return new Boss();
 	}
+	else if (typeObject == 8) {
+		return new Force();
+	}
+	
 	
 }
 
@@ -107,18 +114,34 @@ glm::ivec2 GameObject::getMainPlayerPos() {
 	return this->mainPlayerPos;
 }
 
+void GameObject::setMainPlayerPos(glm::ivec2 pos) {
+	this->mainPlayerPos = pos;
+}
+
+
 int GameObject::getType() {
 	return -1;
 }
 
-bool GameObject::detectColisionObject(vector<GameObject*> objects ,int index) {
-	for (int i = index +1 ; i < objects.size(); ++i) {
-		if (canColision(objects[index]->getType(), objects[i]->getType())) {
-			if ((collisionMoveUp(posPlayer, sizePlayer, objects[i]->getPosition(), objects[i]->getSizePlayer()) || collisionMoveDown(posPlayer, sizePlayer, objects[i]->getPosition(), objects[i]->getSizePlayer())
-				|| collisionMoveRight(posPlayer, sizePlayer, objects[i]->getPosition(), objects[i]->getSizePlayer()) || collisionMoveLeft(posPlayer, sizePlayer, objects[i]->getPosition(), objects[i]->getSizePlayer()))) {
 
-				quitarVida();
-				objects[i]->quitarVida();				
+void GameObject::setvelBuf(bool velBuf) {
+	this->velForceBuff = velBuf;
+}
+bool GameObject::getvelBuf() {
+	return velForceBuff;
+
+}
+
+bool GameObject::detectColisionObject(vector<GameObject*> objects ,int index) {
+	for (int i = 0 ; i < objects.size(); ++i) {
+		if (i != index) {
+			if (canColision(objects[index]->getType(), objects[i]->getType())) {
+				if ((collisionMoveUp(posPlayer, sizePlayer, objects[i]->getPosition(), objects[i]->getSizePlayer()) || collisionMoveDown(posPlayer, sizePlayer, objects[i]->getPosition(), objects[i]->getSizePlayer())
+					|| collisionMoveRight(posPlayer, sizePlayer, objects[i]->getPosition(), objects[i]->getSizePlayer()) || collisionMoveLeft(posPlayer, sizePlayer, objects[i]->getPosition(), objects[i]->getSizePlayer()))) {
+
+					quitarVida();
+					objects[i]->quitarVida();
+				}
 			}
 		}
 	}
@@ -155,7 +178,7 @@ void GameObject::quitarVida() {
 	}
 }
 
-void GameObject::setInvulnerable(bool invulnerable) {
+void GameObject::setInvulnerable(bool invulnerable, ShaderProgram &texProgram) {
 	this->invulnerable = invulnerable;
 }
 

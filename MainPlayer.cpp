@@ -30,24 +30,27 @@ void MainPlayer::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram
 
 void MainPlayer::update(int deltaTime)
 {
-
+	int distance = 2;
+	if (GameObject::getvelBuf()) {
+		distance = 4;
+	}
 
 	glm::ivec2 position = getPosition();
 	if (Game::instance().getSpecialKey(GLUT_KEY_LEFT))
 	{
-		position.x -= 2;
+		position.x -= distance;
 	}
 	else if (Game::instance().getSpecialKey(GLUT_KEY_RIGHT))
 	{
-		position.x += 2;
+		position.x += distance;
 	}
 	else if (Game::instance().getSpecialKey(GLUT_KEY_UP))
 	{
-		position.y -= 2;
+		position.y -= distance;
 	}
 	else if (Game::instance().getSpecialKey(GLUT_KEY_DOWN))
 	{
-		position.y += 2;
+		position.y += distance;
 	}
 	setPosition(position);
 
@@ -67,3 +70,16 @@ bool MainPlayer::detectColisionMap(glm::ivec2 posAnterior) {
 	
 }
 
+
+void MainPlayer::setInvulnerable(bool invulnerable, ShaderProgram &texProgram) {
+	GameObject::setInvulnerable(invulnerable, texProgram);
+	if (invulnerable) {
+		spritesheet.loadFromFile("images/MainPlayerInvencible.png", TEXTURE_PIXEL_FORMAT_RGBA);
+		sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, &texProgram);
+
+	}
+	else {
+		spritesheet.loadFromFile("images/MainPlayer.png", TEXTURE_PIXEL_FORMAT_RGBA);
+		sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, &texProgram);
+	}
+}

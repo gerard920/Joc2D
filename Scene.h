@@ -9,6 +9,7 @@
 #include "Enemy.h"
 #include <vector>
 #include "GameObject.h"
+#include "Explosion.h"
 #include "TexturedQuad.h"
 
 
@@ -26,7 +27,7 @@ public:
 
 	void init();
 	void update(int deltaTime);
-	void render();
+	void render();	
 
 private:
 	void initShaders();
@@ -34,7 +35,7 @@ private:
 private:
 	TileMap *map;
 	vector<GameObject*> objects;
-
+	vector<Explosion*> explosiones;
 	Texture tex1;
 	Texture tex;
 	TexturedQuad *texQuad;
@@ -48,7 +49,8 @@ private:
 		Enemy4 = 4,
 		MainPlayerShoot = 5,
 		EnemyShoot = 6,
-		Boos = 7,
+		Boss = 7,
+		Force = 8
 	};
 
 	ShaderProgram texProgram;
@@ -58,6 +60,9 @@ private:
 	float mapPositionEsquerra;
 	float timeXPressed;
 	bool shoot;
+	bool forceActivated;
+	bool shootForceBuff;
+	int timeForce;
 	glm::mat4 projection;
 	glm::ivec2 posMainPlayer;
 	int radiusMainPlayer;
@@ -66,6 +71,8 @@ private:
 	int timeLapShoot;
 
 	void deleteObject(int indexObject);
+	void apretarTecla();
+	void switchCaseInTypeOfObject(int i, glm::vec2 posAnterior);
 };
 
 

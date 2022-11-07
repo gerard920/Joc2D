@@ -24,15 +24,20 @@ public:
 	virtual void setAlive(bool alive);
 	virtual void setSizePlayer(const glm::vec2 &size);
 	virtual glm::ivec2 getSizePlayer();
+	virtual void setMainPlayerPos(glm::ivec2 pos);
 	virtual glm::ivec2 getMainPlayerPos();
 
 	virtual void setLives(int lives);
 
-	virtual void setInvulnerable(bool invulnerable);
+	virtual void setInvulnerable(bool invulnerable, ShaderProgram &texProgram);
 	virtual bool getInvulnerable();
 
 	virtual void setSubtype(int subtype);
 	virtual int getSubtype();
+
+	virtual void setvelBuf(bool velBuf);
+	virtual bool getvelBuf();
+
 
 	virtual bool detectColisionMap(glm::ivec2 posAnterior);
 	virtual bool detectColisionObject(vector<GameObject*> objects, int index);
@@ -61,7 +66,7 @@ public:
 
 private:
 	glm::ivec2 tileMapDispl, posPlayer, sizePlayer, mainPlayerPos;
-	bool alive, invulnerable;
+	bool alive, invulnerable, velForceBuff;
 	int lives, type, subtype;
 	bool canColision(int objectX, int objectY);
 	

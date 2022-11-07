@@ -45,19 +45,19 @@ void Scene::init()
 	initialPos = 0.f;
 	mapPositionEsquerra = 0.f;
 	shoot = false;
-	//fons negre
-	//declarar el fons
+	forceActivated = false;
+	shootForceBuff = false;
+
+	//FONDO
+
 	glm::vec2 geom1[2] = { glm::vec2(0.f, 0.f), glm::vec2(2250.f, 480.f) };
 	glm::vec2 texCoords2[2] = { glm::vec2(0.f, 0.f), glm::vec2(1.f, 1.f) };
 	fons = TexturedQuad::createTexturedQuad(geom1, texCoords2, texProgram);
-	// Load textures
 	//tex1.loadFromFile("images/fonsnegre.png", TEXTURE_PIXEL_FORMAT_RGBA);
 
-	//declarar el fons
 	glm::vec2 geom[2] = { glm::vec2(0.f, 0.f), glm::vec2(2250.f, 480.f) };
 	glm::vec2 texCoords[2] = { glm::vec2(0.f, 0.f), glm::vec2(1.f, 1.f) };
 	texQuad = TexturedQuad::createTexturedQuad(geom, texCoords, texProgram);
-	// Load textures
 	tex.loadFromFile("images/mapita.png", TEXTURE_PIXEL_FORMAT_RGBA);
 
 	map = TileMap::createTileMap("levels/level011.txt", glm::vec2(SCREEN_X, SCREEN_Y), texProgram);
@@ -70,23 +70,12 @@ void Scene::init()
 	objects.push_back(mainPlayer);
 	posMainPlayer = mainPlayer->getPosition();
 
-	GameObject *enemigo = GameObject::make_Object(1);
+	//Enemics de prova
+	GameObject *enemigo = GameObject::make_Object(Boss);
 	enemigo->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	enemigo->setPosition(glm::vec2((INIT_ENEMY_X_TILES * map->getTileSize()), INIT_ENEMY_Y_TILES * map->getTileSize()));
+	enemigo->setPosition(glm::vec2((INIT_ENEMY_X_TILES * map->getTileSize()), 2* map->getTileSize()));
 	enemigo->setTileMap(map);
 	objects.push_back(enemigo);
-
-	//GameObject *enemigo1 = GameObject::make_Object(2);
-	//enemigo1->init(glm::vec2(((INIT_ENEMY_X_TILES + 4) * map->getTileSize()), INIT_ENEMY_Y_TILES * map->getTileSize()), texProgram);
-	/////enemigo1->setPosition(glm::vec2(((INIT_ENEMY_X_TILES + 4 ) * map->getTileSize()), INIT_ENEMY_Y_TILES * map->getTileSize()));
-	//enemigo1->setTileMap(map);
-	//objects.push_back(enemigo1);
-
-	//GameObject *enemigo2 = GameObject::make_Object(3);
-	//enemigo2->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	//enemigo2->setPosition(glm::vec2(((INIT_ENEMY_X_TILES + 8) * map->getTileSize()), INIT_ENEMY_Y_TILES * map->getTileSize()));
-	//enemigo2->setTileMap(map);
-	//objects.push_back(enemigo2);
 
 	GameObject *enemigo3 = GameObject::make_Object(4);
 	enemigo3->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
@@ -94,9 +83,7 @@ void Scene::init()
 	enemigo3->setTileMap(map);
 	objects.push_back(enemigo3);
 
-
-
-
+	//Camara
 	projection = glm::ortho(0.f, float(SCREEN_WIDTH - 1), float(SCREEN_HEIGHT - 1), 0.f);
 	currentTime = 0.0f;
 }
@@ -113,87 +100,8 @@ void Scene::update(int deltaTime)
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 
-	//al clicar el 1,2,3
-	if (Game::instance().getKey(49)) {
-		initialPos = 200.f;
-		initialTime = currentTime;
-		mapPositionEsquerra == 200.f;
-		objects[0]->setPosition(glm::ivec2(initialPos, INIT_PLAYER_Y_TILES * map->getTileSize()));
-	}
-
-	if (Game::instance().getKey(50)) {
-		initialPos = 600.f;
-		initialTime = currentTime;
-		mapPositionEsquerra == 600.f;
-		objects[0]->setPosition(glm::ivec2(initialPos, INIT_PLAYER_Y_TILES * map->getTileSize()));
-
-	}
-
-	if (Game::instance().getKey(51)) {
-		initialPos = 1000.f;
-		initialTime = currentTime;
-		mapPositionEsquerra == 1000.f;
-		objects[0]->setPosition(glm::ivec2(initialPos, INIT_PLAYER_Y_TILES * map->getTileSize()));
-
-	}
-
-
-	//I or i invulnerable
-	if (Game::instance().getKey(73) || Game::instance().getKey(105)) {
-		for (int i = 0; i < objects.size(); ++i) {
-			if (objects[i]->getType() == MainPlayer) {
-				objects[i]->setInvulnerable(!objects[i]->getInvulnerable());
-			}
-		}
-	}
-
-	//F or f force
-	if (Game::instance().getKey(70) || Game::instance().getKey(102)) {
-		for (int i = 0; i < objects.size(); ++i) {
-			if (objects[i]->getType() == MainPlayer) {
-			}
-		}
-	}
-
-	//X or x shoot
-	/*if ((Game::instance().getKey(88) || Game::instance().getKey(120)) && (currentTime - lastShootPlayer) / 1000 >= 1) {
-		lastShootPlayer = currentTime;
-
-		GameObject *shoot1 = GameObject::make_Object(MainPlayerShoot);
-		shoot1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		shoot1->setPosition(glm::vec2((posMainPlayer.x + 46), posMainPlayer.y + 46 / 2 - 4 / 2));
-		shoot1->setTileMap(map);
-		objects.push_back(shoot1);
-	}*/
-
-	if (Game::instance().getKey(88) || Game::instance().getKey(120)) {
-		timeXPressed += 1;
-	}
-	else {
-		if (shoot) {
-			shoot = false;
-			GameObject *shoot1;
-			if (timeXPressed < 50) {
-				shoot1 = GameObject::make_Object(MainPlayerShoot);
-				shoot1->setSubtype(0);
-				
-			}
-			else {
-				shoot1 = GameObject::make_Object(MainPlayerShoot);	
-				shoot1->setSubtype(1);
-			}
-			shoot1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-			shoot1->setPosition(glm::vec2((posMainPlayer.x + 46), posMainPlayer.y + 46 / 2 - 4 / 2));
-			shoot1->setTileMap(map);
-			objects.push_back(shoot1);
-		}
-		timeXPressed = 0;
-	}
-
-	if (timeXPressed > 0) {
-		shoot = true;
-	}
-
+	
+	apretarTecla();
 
 
 	/*if (1 + rand() % 200 == 1) {
@@ -209,77 +117,34 @@ void Scene::update(int deltaTime)
 
 		glm::ivec2 posAnterior = objects[i]->getPosition();
 		int currentFlame = 5;
-		if (objects[i]->getType() == Enemy1) {
-			if (1 + rand() % 200 == 1) {
-				GameObject* bala1 = GameObject::make_Object(6);
-				bala1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-				bala1->setPosition(glm::vec2(posAnterior.x, posAnterior.y + 46 / 2 - 4 / 2));
-				bala1->setTileMap(map);
-				objects.push_back(bala1);
-			}
-		}
-		/*if (objects[i]->getType() == Enemy2) {
-			if (1 + rand() % 200 == 1) {
-				GameObject* bala1 = GameObject::make_Object(6);
-				bala1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-				bala1->setPosition(glm::vec2(posAnterior.x, posAnterior.y + 46 / 2 - 4 / 2));
-				bala1->setTileMap(map);
-				objects.push_back(bala1);
-			}
-		}
-		if (objects[i]->getType() == Enemy3) {
-			if (1 + rand() % 200 == 1) {
-				GameObject* bala1 = GameObject::make_Object(6);
-				bala1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-				bala1->setPosition(glm::vec2(posAnterior.x, posAnterior.y + 46 / 2 - 4 / 2));
-				bala1->setTileMap(map);
-				objects.push_back(bala1);
-			}
-		}*/
-		if (objects[i]->getType() == Enemy4) {
-			if (1 + rand() % 200 == 1) {
-				GameObject* bala1 = GameObject::make_Object(6);
-				bala1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-				bala1->setPosition(glm::vec2(objects[i]->getPosition().x, objects[i]->getPosition().y + 46 / 2 - 4 / 2));
-				bala1->setTileMap(map);
-				bala1->setSubtype(0);
-				GameObject* bala2 = GameObject::make_Object(6);
-				bala2->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-				bala2->setPosition(glm::vec2(objects[i]->getPosition().x, objects[i]->getPosition().y + 46 / 2 - 4 / 2));
-				bala2->setTileMap(map);
-				bala2->setSubtype(1);
-				GameObject* bala3 = GameObject::make_Object(6);
-				bala3->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-				bala3->setPosition(glm::vec2(objects[i]->getPosition().x, objects[i]->getPosition().y + 46 / 2 - 4 / 2));
-				bala3->setTileMap(map);
-				bala3->setSubtype(2);
-
-				objects.push_back(bala1);
-				objects.push_back(bala2);
-				objects.push_back(bala3);	
-
-			}
-		}
 
 		objects[i]->update(deltaTime);
 		objects[i]->detectColisionMap(posAnterior);
 		objects[i]->detectColisionObject(objects, i);
 
-		if (objects[i]->getType() == MainPlayer) {
-			posMainPlayer = objects[i]->getPosition();
-			if (mapPositionEsquerra >= objects[i]->getPosition().x) {
-				objects[i]->setPosition(glm::ivec2(mapPositionEsquerra, objects[i]->getPosition().y));
-			}
-		}
+		switchCaseInTypeOfObject(i, posAnterior);			
 
 		if (!objects[i]->isAlive()) {
 			if (objects[i]->getType() == 0) {			
 				Game::instance().setGameLives(Game::instance().getGameLives() - 1);
 			}
+			/*Explosion *explosion = new Explosion();
+			explosion->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+			explosion->setPosition(posAnterior);
+			explosion->setTime(currentTime);
+			explosiones.push_back(explosion);*/
 			deleteObject(i);
 		}
 
 	}
+	/*for (int i = 0; i < explosiones.size(); ++i) {
+		explosiones[i]->update(deltaTime);
+		if ((currentTime - explosiones[i]->getTime()) / 1000 > 2) {
+			Explosion* eliminar = explosiones[i];
+			explosiones.erase(std::find(explosiones.begin(), explosiones.end(), explosiones[i]));
+			delete eliminar;
+		}
+	}*/
 
 }
 
@@ -324,6 +189,11 @@ void Scene::render()
 		objects[i]->render();
 	}
 
+	for (int i = 0; i < explosiones.size(); ++i) {
+		explosiones[i]->render();
+	}
+
+
 
 
 }
@@ -333,6 +203,194 @@ void Scene::deleteObject(int indexObject) {
 	objects.erase(std::find(objects.begin(), objects.end(), objects[indexObject]));
 	delete eliminar;
 }
+
+void Scene::apretarTecla() {
+	//al clicar el 1,2,3
+	if (Game::instance().getKey(49)) {
+		initialPos = 200.f;
+		initialTime = currentTime;
+		mapPositionEsquerra == 200.f;
+		objects[0]->setPosition(glm::ivec2(initialPos, INIT_PLAYER_Y_TILES * map->getTileSize()));
+	}
+
+	if (Game::instance().getKey(50)) {
+		initialPos = 600.f;
+		initialTime = currentTime;
+		mapPositionEsquerra == 600.f;
+		objects[0]->setPosition(glm::ivec2(initialPos, INIT_PLAYER_Y_TILES * map->getTileSize()));
+
+	}
+
+	if (Game::instance().getKey(51)) {
+		initialPos = 1000.f;
+		initialTime = currentTime;
+		mapPositionEsquerra == 1000.f;
+		objects[0]->setPosition(glm::ivec2(initialPos, INIT_PLAYER_Y_TILES * map->getTileSize()));
+
+	}
+
+
+	//I or i invulnerable
+	if (Game::instance().getKey(73) || Game::instance().getKey(105)) {
+		for (int i = 0; i < objects.size(); ++i) {
+			if (objects[i]->getType() == MainPlayer) {
+				objects[i]->setInvulnerable(true, texProgram);
+			}
+		}
+	}
+
+	//F or f force
+	if (Game::instance().getKey(70) || Game::instance().getKey(102)) {
+		if (!forceActivated) {
+			GameObject *force = GameObject::make_Object(Force);
+			force->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+			force->setPosition(glm::vec2((posMainPlayer.x + 40), posMainPlayer.y));
+			force->setTileMap(map);
+			objects.push_back(force);
+			forceActivated = true;
+			shootForceBuff = true;
+			for (int i = 0; i < objects.size(); ++i) {
+				if (objects[i]->getType() == MainPlayer) {
+					objects[i]->setvelBuf(true);
+				}
+			}
+			timeForce = currentTime;
+		}
+	}
+	if (forceActivated && (currentTime - timeForce) / 1000 > 15) {
+		for (int i = 0; i < objects.size(); ++i) {
+			if (objects[i]->getType() == Force) {
+				forceActivated = false;
+				shootForceBuff = true;
+				deleteObject(i);
+			}
+			if (objects[i]->getType() == MainPlayer) {
+				objects[i]->setvelBuf(false);
+			}
+		}
+
+	}
+
+	//X or x shoot
+	/*if ((Game::instance().getKey(88) || Game::instance().getKey(120)) && (currentTime - lastShootPlayer) / 1000 >= 1) {
+		lastShootPlayer = currentTime;
+
+		GameObject *shoot1 = GameObject::make_Object(MainPlayerShoot);
+		shoot1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+		shoot1->setPosition(glm::vec2((posMainPlayer.x + 46), posMainPlayer.y + 46 / 2 - 4 / 2));
+		shoot1->setTileMap(map);
+		objects.push_back(shoot1);
+	}*/
+
+	if (Game::instance().getKey(88) || Game::instance().getKey(120)) {
+		timeXPressed += 1;
+	}
+	else {
+		if (shoot) {
+			shoot = false;
+			GameObject *shoot1;
+			if (timeXPressed < 50) {
+				shoot1 = GameObject::make_Object(MainPlayerShoot);
+				shoot1->setSubtype(0);
+				if (shootForceBuff) {
+					GameObject *shoot2 = GameObject::make_Object(MainPlayerShoot);
+					GameObject *shoot3 = GameObject::make_Object(MainPlayerShoot);
+					shoot2->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+					shoot2->setPosition(glm::vec2((posMainPlayer.x + 46), posMainPlayer.y + 46 / 2 - 4 / 2));
+					shoot2->setTileMap(map);
+					shoot2->setSubtype(2);
+					shoot3->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+					shoot3->setPosition(glm::vec2((posMainPlayer.x + 46), posMainPlayer.y + 46 / 2 - 4 / 2));
+					shoot3->setTileMap(map);
+					shoot3->setSubtype(3);
+					objects.push_back(shoot2);
+					objects.push_back(shoot3);
+				}
+			}
+			else {
+				shoot1 = GameObject::make_Object(MainPlayerShoot);
+				shoot1->setSubtype(1);
+			}
+			shoot1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+			shoot1->setPosition(glm::vec2((posMainPlayer.x + 46), posMainPlayer.y + 46 / 2 - 4 / 2));
+			shoot1->setTileMap(map);
+			objects.push_back(shoot1);
+		}
+		timeXPressed = 0;
+	}
+	if (timeXPressed > 0) {
+		shoot = true;
+	}
+}
+
+void Scene::switchCaseInTypeOfObject(int i, glm::vec2 posAnterior) {
+	int type = objects[i]->getType();
+	switch (type) {
+	case Enemy1:
+		if (1 + rand() % 200 == 1) {
+			GameObject* bala1 = GameObject::make_Object(6);
+			bala1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+			bala1->setPosition(glm::vec2(posAnterior.x, posAnterior.y + 46 / 2 - 4 / 2));
+			bala1->setTileMap(map);
+			objects.push_back(bala1);
+		}
+		break;
+	case Enemy2:
+		if (1 + rand() % 200 == 1) {
+			GameObject* bala1 = GameObject::make_Object(6);
+			bala1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+			bala1->setPosition(glm::vec2(posAnterior.x, posAnterior.y + 46 / 2 - 4 / 2));
+			bala1->setTileMap(map);
+			objects.push_back(bala1);
+		}		
+		break;
+	case Enemy3:
+		if (1 + rand() % 200 == 1) {
+			GameObject* bala1 = GameObject::make_Object(6);
+			bala1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+			bala1->setPosition(glm::vec2(posAnterior.x, posAnterior.y + 46 / 2 - 4 / 2));
+			bala1->setTileMap(map);
+			objects.push_back(bala1);
+		}
+		break;
+	case Enemy4:
+		if (1 + rand() % 200 == 1) {
+			glm::ivec2 position = objects[i]->getPosition();
+			for (int i = 0; i <= 2; ++i) {
+				GameObject* bala1 = GameObject::make_Object(6);
+				bala1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+				bala1->setPosition(glm::vec2(position.x, position.y + 46 / 2 - 4 / 2));
+				bala1->setTileMap(map);
+				bala1->setSubtype(i);
+				objects.push_back(bala1);
+			}
+		}
+		break;
+	case MainPlayer:
+		posMainPlayer = objects[i]->getPosition();
+		if (mapPositionEsquerra >= objects[i]->getPosition().x) {
+			objects[i]->setPosition(glm::ivec2(mapPositionEsquerra, objects[i]->getPosition().y));
+		}
+		break;
+	case Boss:
+		if (1 + rand() % 200 == 1) {
+			for (int i = 0; i < 5; ++i) {
+				GameObject* bala1 = GameObject::make_Object(6);
+				bala1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+				bala1->setPosition(glm::vec2((INIT_ENEMY_X_TILES * map->getTileSize()), 100 + rand() % 350));
+				bala1->setTileMap(map);
+				bala1->setSubtype(rand() % 2);
+				objects.push_back(bala1);
+			}
+		}
+		break;
+	case Force:
+		objects[i]->setMainPlayerPos(posMainPlayer);
+		break;
+
+	}
+}
+
 
 void Scene::initShaders()
 {

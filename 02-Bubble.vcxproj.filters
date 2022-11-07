@@ -84,6 +84,12 @@
     <ClInclude Include="EnemyShoot1.h">
       <Filter>Archivos de encabezado\Factory</Filter>
     </ClInclude>
+    <ClInclude Include="Force.h">
+      <Filter>Archivos de encabezado\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -148,6 +154,12 @@
     </ClCompile>
     <ClCompile Include="EnemyShoot1.cpp">
       <Filter>Archivos de código fuente\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Force.cpp">
+      <Filter>Archivos de código fuente\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Explosion.cpp">
+      <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
