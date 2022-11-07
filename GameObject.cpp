@@ -93,6 +93,11 @@ glm::ivec2 GameObject::getSizePlayer() {
 	return this->sizePlayer;
 }
 
+glm::ivec2 GameObject::getTileMap() {
+	return this->tileMapDispl;
+}
+
+
 
 void GameObject::setSizePlayer(const glm::vec2 &size) {
 	this->sizePlayer = size;
@@ -104,6 +109,13 @@ void GameObject::setPosition(const glm::vec2 &pos)
 	posPlayer = pos;
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
 }
+
+void GameObject::setPosition2(const glm::vec2 &pos)
+{
+	posPlayer = pos;
+	//sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));
+}
+
 
 glm::ivec2 GameObject::getPosition() {
 	return this->posPlayer;

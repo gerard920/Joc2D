@@ -48,16 +48,16 @@ void MainShoot1::update(int deltaTime)
 	int subtype = this->getSubtype();
 	switch (subtype) {
 	case 2:
-		position.x += 1;
-		position.y -= 1;
+		position.x += 2;
+		position.y -= 2;
 		break;
 	case 0:
 	case 1:
-		position.x += 1;
+		position.x += 2;
 		break;
 	case 3:
-		position.x += 1;
-		position.y += 1;
+		position.x += 2;
+		position.y += 2;
 		break;
 
 	}

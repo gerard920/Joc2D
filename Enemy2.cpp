@@ -4,6 +4,7 @@
 #include <GL/glut.h>
 #include "Enemy2.h"
 #include "Game.h"
+#include <glm/gtc/matrix_transform.hpp>
 
 
 #define JUMP_ANGLE_STEP 4
@@ -45,8 +46,20 @@ void Enemy2::update(int deltaTime)
 }
 
 void Enemy2::render() {	
-	sprite->render(1, currentTime);
 
+	glm::mat4 modelview;
+	glm::vec2 position = sprite->getPosition();
+
+	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(position.x, position.y, 0.f));
+	modelview = glm::translate(modelview, glm::vec3(46.f, 50.f, 0.f));
+	modelview = glm::rotate(modelview, -currentTime / 1000.f, glm::vec3(0.0f, 0.0f, 1.0f));
+	modelview = glm::translate(modelview, glm::vec3(-46.f, -50.f, 0.f));
+	modelview = glm::rotate(modelview, currentTime / 1000.f, glm::vec3(0.0f, 0.0f, 1.0f));
+	sprite->render(2, currentTime, modelview);
+
+	position.x = modelview[3].x;
+	position.y = modelview[3].y;
+	this->setPosition2(position);
 }
 
 int Enemy2::getType() {

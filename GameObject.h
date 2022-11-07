@@ -17,8 +17,12 @@ public:
 	virtual void render();
 
 	virtual void setTileMap(TileMap *tileMap);
+	virtual glm::ivec2 getTileMap();
+
 	virtual glm::ivec2 getPosition();
 	virtual void setPosition(const glm::vec2 &pos);
+	virtual void setPosition2(const glm::vec2 &pos);
+
 	virtual int getType();
 	virtual bool isAlive();
 	virtual void setAlive(bool alive);

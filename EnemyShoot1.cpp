@@ -20,17 +20,18 @@
 void EnemyShoot1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
 	GameObject::init(tileMapPos, shaderProgram);
-	spritesheet.loadFromFile("images/EnemyShoot2.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	//Mida prsj	           //mida sheet que agafa 
-	setSizePlayer(glm::ivec2(32, 16));
+	if (getSubtype() == 3) {
+		setSizePlayer(glm::ivec2(16, 32));
+		spritesheet.loadFromFile("images/EnemyShootDown.png", TEXTURE_PIXEL_FORMAT_RGBA);
+		sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, &shaderProgram);
 
-	sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, &shaderProgram);
-	//sprite->setNumberAnimations(1);
-
-	//sprite->setAnimationSpeed(STAND_LEFT, 8);
-	//sprite->addKeyframe(STAND_LEFT, glm::vec2(0.f, 0.339f));
-	//sprite->changeAnimation(0);
-	//rotacio
+	}
+	else {
+		spritesheet.loadFromFile("images/EnemyShoot2.png", TEXTURE_PIXEL_FORMAT_RGBA);
+		setSizePlayer(glm::ivec2(32, 16));
+		sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, &shaderProgram);
+	}
 }
 
 void EnemyShoot1::update(int deltaTime)
@@ -42,16 +43,20 @@ void EnemyShoot1::update(int deltaTime)
 	int subtype = this->getSubtype();
 	switch (subtype) {
 	case 0:
-		position.x -= 1;
-		position.y -= 1;
+		position.x -= 2;
+		position.y -= 2;
 		break;
 	case 1:
-		position.x -= 1;
+		position.x -= 2;
 		break;
 	case 2:
-		position.x -= 1;
-		position.y += 1;
+		position.x -= 2;
+		position.y += 2;
 		break;
+	case 3:
+		position.y += 2;
+		break;
+
 
 	}
 

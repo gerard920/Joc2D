@@ -48,9 +48,9 @@ void Sprite::update(int deltaTime)
 	}
 }
 
-void Sprite::render(int type, int currentTime) const
+void Sprite::render(int type, int currentTime, glm::mat4 modelview) const
 {
-	glm::mat4 modelview;
+	//glm::mat4 modelview;
 
 	if (type = 1) {
 
@@ -62,17 +62,16 @@ void Sprite::render(int type, int currentTime) const
 
 		//modelview = glm::translate(modelview, glm::vec3(64.f, 28.f, 0.f));
 		//modelview = glm::translate(modelview, glm::vec3(-64.f, -28.f, 0.f));
-		shaderProgram->setUniformMatrix4f("modelview", modelview);
+		//shaderProgram->setUniformMatrix4f("modelview", modelview);
 
 	}
 	else {
-		modelview = glm::translate(modelview, glm::vec3(position.x, position.y, 0.f));
-
-		shaderProgram->setUniformMatrix4f("modelview", modelview);
+		modelview = glm::translate(glm::mat4(1.0f), glm::vec3(position.x, position.y, 0.f));
 		shaderProgram->setUniform2f("texCoordDispl", texCoordDispl.x, texCoordDispl.y);
 	}
 	
 	
+	shaderProgram->setUniformMatrix4f("modelview", modelview);
 
 
 	glEnable(GL_TEXTURE_2D);
@@ -142,6 +141,13 @@ void Sprite::setPosition(const glm::vec2 &pos)
 {
 	position = pos;
 }
+
+
+glm::vec2 Sprite::getPosition()
+{
+	return this->position;
+}
+
 
 
 

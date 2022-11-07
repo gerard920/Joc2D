@@ -24,10 +24,10 @@ void Boss::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 
 	spritesheet.loadFromFile("images/Boss.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	//Mida prsj	           //mida sheet que agafa 
-	setSizePlayer(glm::ivec2(342, 333));
+	setSizePlayer(glm::ivec2(280, 353));
 	sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, &shaderProgram);
 
-	this->setLives(15);
+	this->setLives(40);
 }
 
 void Boss::update(int deltaTime)

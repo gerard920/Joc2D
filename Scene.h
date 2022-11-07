@@ -25,7 +25,7 @@ public:
 
 	void init();
 	void update(int deltaTime);
-	void render();	
+	void render();
 
 private:
 	void initShaders();
@@ -36,8 +36,17 @@ private:
 	vector<Explosion*> explosiones;
 	Texture tex1;
 	Texture tex;
+	Texture tex2;
+	Texture tex3;
+	Texture tex4;
+	bool boss_active;
 	TexturedQuad *texQuad;
 	TexturedQuad *fons;
+	TexturedQuad *fons2;
+	TexturedQuad *fons3;
+	TexturedQuad *fons4;
+	float moviment;
+	float moviment2;
 
 	TexturedQuad *win;
 	Texture texWin;

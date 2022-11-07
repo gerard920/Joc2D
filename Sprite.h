@@ -25,7 +25,7 @@ public:
 
 	void update(int deltaTime);
 	void render() const;
-	void render(int type, int currentTime) const;
+	void render(int type, int currentTime, glm::mat4 modelView) const;
 	void free();
 
 	void setNumberAnimations(int nAnimations);
@@ -35,6 +35,8 @@ public:
 	int animation() const;
 	
 	void setPosition(const glm::vec2 &pos);
+	glm::vec2 getPosition();
+
 
 private:
 	Texture *texture;
