@@ -467,97 +467,90 @@ void Scene::posicionarObjetos() {
 	//	}
 	//}
 
-	if (pos1 <= 300  && pos1 <= 310 && f300) {
+	if (pos1 <= 300 && pos1 <= 310 && f300) {
 		//for (int i = 0; i < 2; ++i) {
 		GameObject* enemigo = GameObject::make_Object(Enemy1);
 		enemigo->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo->setPosition(glm::vec2(pos1 + 360 - 80, INIT_ENEMY_Y_TILES)); //60 s ha djustar al tamany de la window
+		enemigo->setPosition(glm::vec2(480, INIT_ENEMY_Y_TILES)); //60 s ha djustar al tamany de la window
 		enemigo->setTileMap(map);
 		objects.push_back(enemigo);
 
 		GameObject* enemigo2 = GameObject::make_Object(Enemy1);
 		enemigo2->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo2->setPosition(glm::vec2(pos1 + 360, INIT_ENEMY_Y_TILES + 130)); //60 s ha djustar al tamany de la window
+		enemigo2->setPosition(glm::vec2(540, INIT_ENEMY_Y_TILES + 300)); //60 s ha djustar al tamany de la window
 		enemigo2->setTileMap(map);
 		objects.push_back(enemigo2);
 
 
 		GameObject* enemigo3 = GameObject::make_Object(Enemy1);
 		enemigo3->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo3->setPosition(glm::vec2(pos1 + 360 + 80, INIT_ENEMY_Y_TILES)); //60 s ha djustar al tamany de la window
+		enemigo3->setPosition(glm::vec2(600, INIT_ENEMY_Y_TILES)); //60 s ha djustar al tamany de la window
 		enemigo3->setTileMap(map);
 		objects.push_back(enemigo3);
-		
+
 		//}
 		f300 = false;
-	}
-
-
-	if (pos1 >= 400 && pos1 <= 410 && f400) {
-		//for (int i = 0; i < 2; ++i) {
-		GameObject* enemigo = GameObject::make_Object(Enemy3);
-		enemigo->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo->setPosition(glm::vec2(700, 20)); //60 s ha djustar al tamany de la window
-		enemigo->setTileMap(map);
-		objects.push_back(enemigo);
-
-		GameObject* enemigo2 = GameObject::make_Object(Enemy4);
-		enemigo2->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo2->setPosition(glm::vec2(pos1 + 460 - 20, INIT_ENEMY_Y_TILES + 130)); //60 s ha djustar al tamany de la window
-		enemigo2->setTileMap(map);
-		objects.push_back(enemigo2);
-
-
-		GameObject* enemigo3 = GameObject::make_Object(Enemy3);
-		enemigo3->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo3->setPosition(glm::vec2(pos1 + 540 , INIT_ENEMY_Y_TILES + 130)); //60 s ha djustar al tamany de la window
-		enemigo3->setTileMap(map);
-		objects.push_back(enemigo3);
 		//}
-		f400 = false;
-	}
 
-	if (pos1 >= 800 && pos1 <= 810 && f500) {
-		GameObject* enemigo = GameObject::make_Object(Enemy3);
-		enemigo->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo->setPosition(glm::vec2(1070, 30)); //60 s ha djustar al tamany de la window
-		enemigo->setTileMap(map);
-		objects.push_back(enemigo);
 
-		GameObject* enemigo2 = GameObject::make_Object(Enemy1);
-		enemigo2->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo2->setPosition(glm::vec2(pos1 + 460 - 20, INIT_ENEMY_Y_TILES + 130 + (rand() % 60) - (rand() % 30))); //60 s ha djustar al tamany de la window
-		enemigo2->setTileMap(map);
-		objects.push_back(enemigo2);
-
-		GameObject* enemigo4 = GameObject::make_Object(Enemy1);
+		//if (pos1 >= 400 && pos1 <= 410 && f400) {
+			//for (int i = 0; i < 2; ++i) {
+		GameObject* enemigo4 = GameObject::make_Object(Enemy3);
 		enemigo4->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo4->setPosition(glm::vec2(pos1 + 460 - 20 + 50, INIT_ENEMY_Y_TILES + 130  +(rand() % 30) - (rand() % 60))); //60 s ha djustar al tamany de la window
+		enemigo4->setPosition(glm::vec2(700, 20)); //60 s ha djustar al tamany de la window
 		enemigo4->setTileMap(map);
 		objects.push_back(enemigo4);
 
-		GameObject* enemigo5 = GameObject::make_Object(Enemy1);
+		GameObject* enemigo5 = GameObject::make_Object(Enemy4);
 		enemigo5->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo5->setPosition(glm::vec2(pos1 + 460 - 20 + 100, INIT_ENEMY_Y_TILES + 130 + (rand() % 60) - (rand() % 30))); //60 s ha djustar al tamany de la window
+		enemigo5->setPosition(glm::vec2(940, INIT_ENEMY_Y_TILES + 130)); //60 s ha djustar al tamany de la window
 		enemigo5->setTileMap(map);
 		objects.push_back(enemigo5);
 
+		f400 = false;
+		//}
+
+		//if (pos1 >= 600 && pos1 <= 810 && f500) {
+		GameObject* enemigo6 = GameObject::make_Object(Enemy3);
+		enemigo6->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+		enemigo6->setPosition(glm::vec2(1100, INIT_ENEMY_Y_TILES + 130)); //60 s ha djustar al tamany de la window
+		enemigo6->setTileMap(map);
+		objects.push_back(enemigo6);
+
+		GameObject* enemigo7 = GameObject::make_Object(Enemy1);
+		enemigo7->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+		enemigo7->setPosition(glm::vec2(1240, INIT_ENEMY_Y_TILES + 300)); //60 s ha djustar al tamany de la window
+		enemigo7->setTileMap(map);
+		objects.push_back(enemigo7);
+
+		GameObject* enemigo8 = GameObject::make_Object(Enemy1);
+		enemigo8->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+		enemigo8->setPosition(glm::vec2(1300, INIT_ENEMY_Y_TILES + 16)); //60 s ha djustar al tamany de la window
+		enemigo8->setTileMap(map);
+		objects.push_back(enemigo8);
+
+		GameObject* enemigo9 = GameObject::make_Object(Enemy1);
+		enemigo9->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+		enemigo9->setPosition(glm::vec2(1350, INIT_ENEMY_Y_TILES + 300 )); //60 s ha djustar al tamany de la window
+		enemigo9->setTileMap(map);
+		objects.push_back(enemigo9);
 
 
-		GameObject* enemigo3 = GameObject::make_Object(Enemy3);
-		enemigo3->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo3->setPosition(glm::vec2(pos1 + 540, INIT_ENEMY_Y_TILES + 130)); //60 s ha djustar al tamany de la window
-		enemigo3->setTileMap(map);
-		objects.push_back(enemigo3);
+
+		//GameObject* enemigo3 = GameObject::make_Object(Enemy3);
+		//enemigo3->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+		//enemigo3->setPosition(glm::vec2(pos1 + 540, INIT_ENEMY_Y_TILES + 130)); //60 s ha djustar al tamany de la window
+		//enemigo3->setTileMap(map);
+		//objects.push_back(enemigo3);
 		f500 = false;
-	}
 
-	if (pos1 >= 1100 && pos1 <= 1110  && f600) {
-		GameObject* enemigo = GameObject::make_Object(Enemy4);
-		enemigo->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo->setPosition(glm::vec2(pos1 + 360 - 20, INIT_ENEMY_Y_TILES + 130)); //60 s ha djustar al tamany de la window
-		enemigo->setTileMap(map);
-		objects.push_back(enemigo);
+
+		//if (pos1 >= 1100 && pos1 <= 1110  && f600) {
+		GameObject* enemigo10 = GameObject::make_Object(Enemy4);
+		enemigo10->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+		enemigo10->setPosition(glm::vec2(1420, INIT_ENEMY_Y_TILES + 130)); //60 s ha djustar al tamany de la window
+		enemigo10->setTileMap(map);
+		objects.push_back(enemigo10);
 
 		//GameObject* enemigo2 = GameObject::make_Object(Enemy1);
 		//enemigo2->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
@@ -572,36 +565,49 @@ void Scene::posicionarObjetos() {
 		//enemigo3->setTileMap(map);
 		//objects.push_back(enemigo3);
 		f600 = false;
+		//}
+
+		//if (pos1 >= 1200 && pos1 <= 1210 && f700) {
+		GameObject* enemigo11 = GameObject::make_Object(Enemy2);
+		enemigo11->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+		enemigo11->setPosition(glm::vec2(1540, INIT_ENEMY_Y_TILES + 20)); //60 s ha djustar al tamany de la window
+		enemigo11->setTileMap(map);
+		objects.push_back(enemigo11);
+
+		GameObject* enemigo12 = GameObject::make_Object(Enemy2);
+		enemigo12->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+		enemigo12->setPosition(glm::vec2(1640, INIT_ENEMY_Y_TILES + 20)); //60 s ha djustar al tamany de la window
+		enemigo12->setTileMap(map);
+		objects.push_back(enemigo12);
+
+
+		GameObject* enemigo13 = GameObject::make_Object(Enemy2);
+		enemigo13->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+		enemigo13->setPosition(glm::vec2(1540, INIT_ENEMY_Y_TILES + 240)); //60 s ha djustar al tamany de la window
+		enemigo13->setTileMap(map);
+		objects.push_back(enemigo13);
+
+		GameObject* enemigo14 = GameObject::make_Object(Enemy2);
+		enemigo14->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+		enemigo14->setPosition(glm::vec2(1640, INIT_ENEMY_Y_TILES + 240)); //60 s ha djustar al tamany de la window
+		enemigo14->setTileMap(map);
+		objects.push_back(enemigo14);
+
+		GameObject* enemigo15 = GameObject::make_Object(Enemy1);
+		enemigo15->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+		enemigo15->setPosition(glm::vec2(2030, 144)); //60 s ha djustar al tamany de la window
+		enemigo15->setTileMap(map);
+		objects.push_back(enemigo15);
+
+		GameObject* enemigo16 = GameObject::make_Object(Enemy1);
+		enemigo16->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+		enemigo16->setPosition(glm::vec2(2150, 144 + 70)); //60 s ha djustar al tamany de la window
+		enemigo16->setTileMap(map);
+		objects.push_back(enemigo16);
+
 	}
+	//}
 
-	if (pos1 >= 1200 && pos1 <= 1210 && f700) {
-		GameObject* enemigo = GameObject::make_Object(Enemy2);
-		enemigo->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo->setPosition(glm::vec2(pos1 + 360 - 20, INIT_ENEMY_Y_TILES + 20)); //60 s ha djustar al tamany de la window
-		enemigo->setTileMap(map);
-		objects.push_back(enemigo);
-
-		GameObject* enemigo2 = GameObject::make_Object(Enemy2);
-		enemigo2->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo2->setPosition(glm::vec2(pos1 + 460 - 20, INIT_ENEMY_Y_TILES + 20)); //60 s ha djustar al tamany de la window
-		enemigo2->setTileMap(map);
-		objects.push_back(enemigo2);
-
-
-		GameObject* enemigo3 = GameObject::make_Object(Enemy2);
-		enemigo3->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo3->setPosition(glm::vec2(pos1 + 360 - 20, INIT_ENEMY_Y_TILES + 240)); //60 s ha djustar al tamany de la window
-		enemigo3->setTileMap(map);
-		objects.push_back(enemigo3);
-
-		GameObject* enemigo4 = GameObject::make_Object(Enemy2);
-		enemigo4->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo4->setPosition(glm::vec2(pos1 + 460 - 20, INIT_ENEMY_Y_TILES + 240)); //60 s ha djustar al tamany de la window
-		enemigo4->setTileMap(map);
-		objects.push_back(enemigo4);
-
-		f700 = false;
-	}
 
 
 	//glm::vec2 pos = objects[0]->getPosition();
@@ -680,7 +686,7 @@ void Scene::switchCaseInTypeOfObject(int i, glm::vec2 posAnterior) {
 		}
 		break;
 	case Enemy3:
-		if ((int)currentTime % 75 == 1) {
+		if ((int)currentTime % 40 == 1) {
 			GameObject* bala1 = GameObject::make_Object(6);
 			bala1->setSubtype(3);
 			bala1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
@@ -710,7 +716,7 @@ void Scene::switchCaseInTypeOfObject(int i, glm::vec2 posAnterior) {
 		break;
 	case Boss:
 		if ((int)currentTime % 175 == 75) {
-			for (int i = 0; i < 5; ++i) {
+			for (int i = 0; i < 7; ++i) {
 				GameObject* bala1 = GameObject::make_Object(6);
 				bala1->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 				bala1->setPosition(glm::vec2(posAnterior.x, 100 + rand() % 350));

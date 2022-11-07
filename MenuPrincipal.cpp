@@ -31,11 +31,11 @@ void MenuPrincipal::init(const int& idScene) {
 	background = TexturedQuad::createTexturedQuad(geom, texCoords, texProgram);
 
 	//Load textures
-	sceneMenu.loadFromFile("images/Menu.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	sceneMenu.loadFromFile("images/WinGame.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	sceneCredits.loadFromFile("images/Credits.png", TEXTURE_PIXEL_FORMAT_RGB);
 	sceneIns.loadFromFile("images/Instructions.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	sceneWin.loadFromFile("images/Credits.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	sceneLoose.loadFromFile("images/Instructions.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	sceneWin.loadFromFile("images/WinGame.png", TEXTURE_PIXEL_FORMAT_RGBA);
+	sceneLoose.loadFromFile("images/Loose.png", TEXTURE_PIXEL_FORMAT_RGBA);
 
 	Game::instance().setStatusGame(0);
 }
