@@ -1,4 +1,4 @@
-﻿Build started 07/11/2022 3:36:30.
+﻿Build started 07/11/2022 5:39:06.
      1>Project "C:\Users\gserramia\Desktop\Uni\OpenGL_VS2015\2DGame\02-Bubble\02-Bubble\02-Bubble.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\02-Bubble.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -6,16 +6,16 @@
          C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\bin\HostX86\x86\CL.exe /c /I"..\..\..\libs\Simple OpenGL Image Library\src" /I..\..\..\libs\freeglut\include /I"..\..\..\libs\glew-1.13.0\include" /I..\..\..\libs\glm /ZI /JMC /nologo /W3 /WX- /diagnostics:classic /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TP /analyze- /FC /errorReport:prompt Scene.cpp
          Scene.cpp
      1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(33): warning C4018: '<': signed/unsigned mismatch
-     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(116): warning C4018: '<': signed/unsigned mismatch
-     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(174): warning C4018: '<': signed/unsigned mismatch
-     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(192): warning C4018: '<': signed/unsigned mismatch
-     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(212): warning C4553: '==': result of expression not used; did you intend '='?
-     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(219): warning C4553: '==': result of expression not used; did you intend '='?
-     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(227): warning C4553: '==': result of expression not used; did you intend '='?
-     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(235): warning C4018: '<': signed/unsigned mismatch
-     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(252): warning C4018: '<': signed/unsigned mismatch
-     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(257): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(261): warning C4018: '<': signed/unsigned mismatch
+     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(108): warning C4018: '<': signed/unsigned mismatch
+     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(166): warning C4018: '<': signed/unsigned mismatch
+     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(173): warning C4018: '<': signed/unsigned mismatch
+     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(193): warning C4553: '==': result of expression not used; did you intend '='?
+     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(200): warning C4553: '==': result of expression not used; did you intend '='?
+     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(208): warning C4553: '==': result of expression not used; did you intend '='?
+     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(216): warning C4018: '<': signed/unsigned mismatch
+     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(233): warning C4018: '<': signed/unsigned mismatch
+     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(238): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+     1>c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(242): warning C4018: '<': signed/unsigned mismatch
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\bin\HostX86\x86\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\gserramia\Desktop\Uni\OpenGL_VS2015\2DGame\02-Bubble\Debug\02-Bubble.exe" /INCREMENTAL /NOLOGO /LIBPATH:"..\..\..\libs\Simple OpenGL Image Library\projects\VC9\Debug" /LIBPATH:..\..\..\libs\freeglut\lib /LIBPATH:"..\..\..\libs\glew-1.13.0\lib\Release\Win32" SOIL.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG:FASTLINK /PDB:"C:\Users\gserramia\Desktop\Uni\OpenGL_VS2015\2DGame\02-Bubble\Debug\02-Bubble.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\gserramia\Desktop\Uni\OpenGL_VS2015\2DGame\02-Bubble\Debug\02-Bubble.lib" /MACHINE:X86 Debug\Game.obj
          Debug\main.obj
@@ -55,16 +55,16 @@ Build succeeded.
        "C:\Users\gserramia\Desktop\Uni\OpenGL_VS2015\2DGame\02-Bubble\02-Bubble\02-Bubble.vcxproj" (Build target) (1) ->
        (ClCompile target) -> 
          c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(33): warning C4018: '<': signed/unsigned mismatch
-         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(116): warning C4018: '<': signed/unsigned mismatch
-         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(174): warning C4018: '<': signed/unsigned mismatch
-         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(192): warning C4018: '<': signed/unsigned mismatch
-         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(212): warning C4553: '==': result of expression not used; did you intend '='?
-         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(219): warning C4553: '==': result of expression not used; did you intend '='?
-         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(227): warning C4553: '==': result of expression not used; did you intend '='?
-         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(235): warning C4018: '<': signed/unsigned mismatch
-         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(252): warning C4018: '<': signed/unsigned mismatch
-         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(257): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(261): warning C4018: '<': signed/unsigned mismatch
+         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(108): warning C4018: '<': signed/unsigned mismatch
+         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(166): warning C4018: '<': signed/unsigned mismatch
+         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(173): warning C4018: '<': signed/unsigned mismatch
+         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(193): warning C4553: '==': result of expression not used; did you intend '='?
+         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(200): warning C4553: '==': result of expression not used; did you intend '='?
+         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(208): warning C4553: '==': result of expression not used; did you intend '='?
+         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(216): warning C4018: '<': signed/unsigned mismatch
+         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(233): warning C4018: '<': signed/unsigned mismatch
+         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(238): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+         c:\users\gserramia\desktop\uni\opengl_vs2015\2dgame\02-bubble\02-bubble\scene.cpp(242): warning C4018: '<': signed/unsigned mismatch
 
 
        "C:\Users\gserramia\Desktop\Uni\OpenGL_VS2015\2DGame\02-Bubble\02-Bubble\02-Bubble.vcxproj" (Build target) (1) ->
@@ -77,4 +77,4 @@ Build succeeded.
     15 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:01.40
+Time Elapsed 00:00:01.43

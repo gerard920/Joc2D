@@ -4,6 +4,8 @@
 #include <GL/glut.h>
 #include "Enemy1.h"
 #include "Game.h"
+#include <glm/gtc/matrix_transform.hpp>
+
 
 
 #define JUMP_ANGLE_STEP 4
@@ -25,7 +27,11 @@ void Enemy1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 	spritesheet.loadFromFile("images/Enemy1.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	//Mida prsj	           //mida sheet que agafa 
 	setSizePlayer(glm::ivec2(46, 50));
-	sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, &shaderProgram);
+	texProgram = &shaderProgram;
+
+
+	sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, texProgram);
+
 
 	subiendo = true;
 	bajando = false;
@@ -33,6 +39,8 @@ void Enemy1::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 
 void Enemy1::update(int deltaTime)
 {
+	currentTime += deltaTime;
+
 	GameObject::update(deltaTime);
 
 	glm::ivec2 position = getPosition();
@@ -59,6 +67,8 @@ void Enemy1::update(int deltaTime)
 	
 	setPosition(position);
 }
+
+
 
 int Enemy1::getType() {
 	return 1;

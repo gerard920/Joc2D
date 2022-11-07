@@ -20,8 +20,26 @@
 void Force::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
 	GameObject::init(tileMapPos, shaderProgram);
-	spritesheet.loadFromFile("images/Force.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	setSizePlayer(glm::ivec2(46, 46));
+	int subtype = this->getSubtype();
+	switch (subtype) {
+		case 0: //Force
+			spritesheet.loadFromFile("images/Force.png", TEXTURE_PIXEL_FORMAT_RGBA);
+			setSizePlayer(glm::ivec2(46, 46));
+			break;
+		case 1: //Force object
+			spritesheet.loadFromFile("images/Force.png", TEXTURE_PIXEL_FORMAT_RGBA);
+			setSizePlayer(glm::ivec2(23, 23));
+			break;
+		case 2: //Shoot Buff object
+			spritesheet.loadFromFile("images/Force.png", TEXTURE_PIXEL_FORMAT_RGBA);
+			setSizePlayer(glm::ivec2(23, 23));
+			break;
+		case 3: //Shoot Vel object
+			spritesheet.loadFromFile("images/Force.png", TEXTURE_PIXEL_FORMAT_RGBA);
+			setSizePlayer(glm::ivec2(23, 23));
+			break;
+	}
+
 	sprite = Sprite::createSprite(getSizePlayer(), glm::vec2(1, 1), &spritesheet, &shaderProgram);
 	this->setLives(1000000);
 	
@@ -30,7 +48,7 @@ void Force::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 void Force::update(int deltaTime)
 {
 	GameObject::update(deltaTime);
-	
+
 	glm::ivec2 mainPosition = this->getMainPlayerPos();
 	mainPosition.x += 40;
 	setPosition(mainPosition);

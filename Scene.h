@@ -67,11 +67,14 @@ private:
 	glm::ivec2 posMainPlayer;
 	int radiusMainPlayer;
 
+	bool f200, f300, f400, f500, f600, f700, f800;
+
 	int lastShootPlayer;
 	int timeLapShoot;
 
 	void deleteObject(int indexObject);
 	void apretarTecla();
+	void posicionarObjetos();
 	void switchCaseInTypeOfObject(int i, glm::vec2 posAnterior);
 };
 

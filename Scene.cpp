@@ -47,6 +47,7 @@ void Scene::init()
 	shoot = false;
 	forceActivated = false;
 	shootForceBuff = false;
+	f200 = true; f300 = true; f400 = true; f500 = true; f600 = true; f700 = true; f800 = true;
 
 	//FONDO
 
@@ -71,15 +72,15 @@ void Scene::init()
 	posMainPlayer = mainPlayer->getPosition();
 
 	//Enemics de prova
-	GameObject *enemigo = GameObject::make_Object(Boss);
+	GameObject *enemigo = GameObject::make_Object(Enemy1);
 	enemigo->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	enemigo->setPosition(glm::vec2((INIT_ENEMY_X_TILES * map->getTileSize()), 2* map->getTileSize()));
+	enemigo->setPosition(glm::vec2(((INIT_ENEMY_X_TILES - 8) * map->getTileSize()), 2* map->getTileSize()));
 	enemigo->setTileMap(map);
 	objects.push_back(enemigo);
 
-	GameObject *enemigo3 = GameObject::make_Object(4);
+	GameObject *enemigo3 = GameObject::make_Object(Enemy2);
 	enemigo3->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-	enemigo3->setPosition(glm::vec2(((INIT_ENEMY_X_TILES + 4) * map->getTileSize()), INIT_ENEMY_Y_TILES * map->getTileSize()));
+	enemigo3->setPosition(glm::vec2(((INIT_ENEMY_X_TILES - 4) * map->getTileSize()), (INIT_ENEMY_Y_TILES - 6) * map->getTileSize()));
 	enemigo3->setTileMap(map);
 	objects.push_back(enemigo3);
 
@@ -102,16 +103,7 @@ void Scene::update(int deltaTime)
 
 	
 	apretarTecla();
-
-
-	/*if (1 + rand() % 200 == 1) {
-		GameObject *enemigo = GameObject::make_Object(1 + rand() % 4);
-		enemigo->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo->setPosition(glm::vec2((INIT_ENEMY_X_TILES * map->getTileSize()) + currentTime / 100, INIT_ENEMY_Y_TILES * map->getTileSize()));
-		enemigo->setTileMap(map);
-		objects.push_back(enemigo);
-	}
-*/
+	posicionarObjetos();
 
 	for (int i = 0; i < objects.size(); ++i) {
 
@@ -173,18 +165,7 @@ void Scene::render()
 		texProgram.setUniformMatrix4f("modelview", modelview);
 	for (int i = 0; i < objects.size(); ++i) {
 		if (objects[i]->getType() == 6) {
-			int subtype = objects[i]->getSubtype();
-			switch (subtype) {
-				case 0:
-					
-					break;
-				case 2:					
-					modelview = glm::translate(modelview, glm::vec3(64.f, 64.f, 0.f));
-					modelview = glm::rotate(modelview, -glm::pi<float>()/4, glm::vec3(0.0f, 0.0f, 1.0f));
-					modelview = glm::translate(modelview, glm::vec3(-64.f, -64.f, 0.f));
-					texProgram.setUniformMatrix4f("modelview", modelview);
-					break;
-			}
+			int subtype = objects[i]->getSubtype();		
 		}
 		objects[i]->render();
 	}
@@ -321,6 +302,60 @@ void Scene::apretarTecla() {
 	if (timeXPressed > 0) {
 		shoot = true;
 	}
+}
+
+void Scene::posicionarObjetos() {
+
+	glm::vec2 pos = objects[0]->getPosition();
+	GameObject *enemigo = GameObject::make_Object(1);
+	GameObject *enemigo2 = GameObject::make_Object(1);
+	GameObject *enemigo3 = GameObject::make_Object(1);
+	GameObject *enemigo4 = GameObject::make_Object(4);
+	GameObject *enemigo5 = GameObject::make_Object(4);
+
+
+	switch ((int)pos.x) {
+	case 300:
+		if (f300) {
+			f300 = false;
+			enemigo->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+			enemigo->setPosition(glm::vec2((pos.x + 350), INIT_ENEMY_Y_TILES * map->getTileSize())); //60 s ha djustar al tamany de la window
+			enemigo->setTileMap(map);
+			enemigo2->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+			enemigo2->setPosition(glm::vec2((pos.x + 350), INIT_ENEMY_Y_TILES * map->getTileSize())); //60 s ha djustar al tamany de la window
+			enemigo2->setTileMap(map);
+			enemigo3->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+			enemigo3->setPosition(glm::vec2((pos.x + 350), INIT_ENEMY_Y_TILES * map->getTileSize())); //60 s ha djustar al tamany de la window
+			enemigo3->setTileMap(map);
+			objects.push_back(enemigo);
+			objects.push_back(enemigo2);
+			objects.push_back(enemigo3);
+		}
+		break;
+
+	case 400:
+		if (f400) {
+			f400 = false;
+			enemigo4->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+			enemigo4->setPosition(glm::vec2((pos.x + 350), INIT_ENEMY_Y_TILES * map->getTileSize())); //60 s ha djustar al tamany de la window
+			enemigo4->setTileMap(map);
+			objects.push_back(enemigo4);
+		}
+		break;
+
+	case 500:
+		if (f500) {
+			f500 = false;
+			enemigo5->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+			enemigo5->setPosition(glm::vec2((pos.x + 350), INIT_ENEMY_Y_TILES * map->getTileSize())); //60 s ha djustar al tamany de la window
+			enemigo5->setTileMap(map);
+			objects.push_back(enemigo5);
+		}
+		break;
+
+	default: break;
+	}
+
 }
 
 void Scene::switchCaseInTypeOfObject(int i, glm::vec2 posAnterior) {

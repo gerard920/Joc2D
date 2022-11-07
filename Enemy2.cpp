@@ -35,13 +35,18 @@ void Enemy2::update(int deltaTime)
 
 	GameObject::update(deltaTime);
 
-	glm::ivec2 position = getPosition();
+	//glm::ivec2 position = getPosition();
 
-	rad = 40;
-	position.x = (initialPosition.x + rad) * cos(currentTime/150 % 180);
-	position.y = (initialPosition.y + rad) * sin(currentTime/150 % 180);
+	//rad = 40;
+	//position.x = (initialPosition.x + rad) * cos(currentTime/150 % 180);
+	//position.y = (initialPosition.y + rad) * sin(currentTime/150 % 180);
 
-	setPosition(position);
+	//setPosition(position);
+}
+
+void Enemy2::render() {	
+	sprite->render(1, currentTime);
+
 }
 
 int Enemy2::getType() {

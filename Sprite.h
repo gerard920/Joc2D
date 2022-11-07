@@ -25,6 +25,7 @@ public:
 
 	void update(int deltaTime);
 	void render() const;
+	void render(int type, int currentTime) const;
 	void free();
 
 	void setNumberAnimations(int nAnimations);
@@ -46,6 +47,7 @@ private:
 	float timeAnimation;
 	glm::vec2 texCoordDispl;
 	vector<AnimKeyframes> animations;
+	glm::mat4 modelview;
 
 };
 

@@ -53,7 +53,7 @@ public:
 	Texture spritesheet;
 	Sprite *sprite;
 	TileMap *map;
-
+	ShaderProgram *texProgram;
 
 	enum GameObjectAnims {
 		STAND_LEFT, STAND_RIGHT, MOVE_LEFT, MOVE_RIGHT,
