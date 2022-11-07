@@ -497,11 +497,11 @@ void Scene::posicionarObjetos() {
 		//for (int i = 0; i < 2; ++i) {
 		GameObject* enemigo = GameObject::make_Object(Enemy3);
 		enemigo->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo->setPosition(glm::vec2(pos1 + 360 - 20, INIT_ENEMY_Y_TILES + 130)); //60 s ha djustar al tamany de la window
+		enemigo->setPosition(glm::vec2(700, 20)); //60 s ha djustar al tamany de la window
 		enemigo->setTileMap(map);
 		objects.push_back(enemigo);
 
-		GameObject* enemigo2 = GameObject::make_Object(Enemy1);
+		GameObject* enemigo2 = GameObject::make_Object(Enemy4);
 		enemigo2->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 		enemigo2->setPosition(glm::vec2(pos1 + 460 - 20, INIT_ENEMY_Y_TILES + 130)); //60 s ha djustar al tamany de la window
 		enemigo2->setTileMap(map);
@@ -520,7 +520,7 @@ void Scene::posicionarObjetos() {
 	if (pos1 >= 800 && pos1 <= 810 && f500) {
 		GameObject* enemigo = GameObject::make_Object(Enemy3);
 		enemigo->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-		enemigo->setPosition(glm::vec2(1070, 13)); //60 s ha djustar al tamany de la window
+		enemigo->setPosition(glm::vec2(1070, 30)); //60 s ha djustar al tamany de la window
 		enemigo->setTileMap(map);
 		objects.push_back(enemigo);
 
